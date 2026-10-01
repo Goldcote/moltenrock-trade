@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get started — MoltenRock Trade</title>
+<meta name="robots" content="index">
+<meta name="description" content="Set up MoltenRock Trade in about 15 minutes: a free Cloudflare account, a free GitHub account and an AI agent. Works with any shop. Step by step, with copy-and-paste instructions for your agent.">
+<link rel="canonical" href="https://moltenrocktrade.com/start">
+<meta property="og:title" content="Get started — MoltenRock Trade">
+<meta property="og:description" content="Your Swiss B2B trade portal in about 15 minutes. Any shop, four languages, QR-bill invoices.">
+<meta property="og:image" content="https://moltenrocktrade.com/assets/og.png">
+<meta name="theme-color" content="#0b0c0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 3 7v10l9 5 9-5V7z' fill='none' stroke='%23ff5a1f' stroke-width='1.8'/%3E%3Cpath d='M12 7.5 7.5 10v4l4.5 2.5 4.5-2.5v-4z' fill='%23ff5a1f'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/site.css?v=0.3.0">
+<script src="/assets/start-i18n.js?v=0.3.0" defer></script>
+<script src="/assets/site.js?v=0.3.0" defer></script>
+</head>
+<body class="subpage start">
+<div class="progress" aria-hidden="true"><span></span></div>
+<header class="nav scrolled" id="top">
+  <a class="brand" href="/" aria-label="MoltenRock Trade home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5 7.5 10v4l4.5 2.5 4.5-2.5v-4z" fill="currentColor"/></svg>
+    <span>MoltenRock Trade</span>
+  </a>
+  <nav class="links" aria-label="Sections">
+    <a href="#need" data-i18n="st.need">What you need</a>
+    <a href="#agent" data-i18n="st.ai">What’s an AI agent?</a>
+    <a href="#steps" data-i18n="st.steps">Step by step</a>
+    <a href="#quick" data-i18n="st.quick">The quick way</a>
+  </nav>
+  <div class="nav-right">
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="de">DE</button><button data-lang="fr">FR</button><button data-lang="it">IT</button><button data-lang="en" class="on">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============================== HERO ============================== -->
+<section class="hero start-hero" aria-labelledby="st-title">
+  <canvas class="lava" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="hero-inner start-inner">
+    <div class="hero-copy">
+      <p class="chip reveal"><span class="dot"></span><span data-i18n="st.eyebrow">Get started</span></p>
+      <h1 id="st-title" class="reveal"><span data-i18n="st.h1a">Your trade portal</span> <br><em class="molten" data-i18n="st.h1b">in about 15 minutes</em></h1>
+      <p class="lead reveal" data-i18n="st.lead">No terminal and no code. You create two free accounts, click one button, and your AI agent does the rest – whatever your shop runs on.</p>
+      <div class="hero-cta reveal">
+        <a class="btn big magnetic" href="#step-1"><span data-i18n="st.go">Start with step 1</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+        <a class="btn ghost big" href="#quick"><span data-i18n="st.quick">The quick way</span></a>
+      </div>
+      <div class="st-stats reveal">
+        <div><b data-count="15">15</b><span data-i18n="st.stat1">minutes, start to finish</span></div>
+        <div><b data-count="0" data-prefix="CHF ">CHF 0</b><span data-i18n="st.stat2">on the free plans</span></div>
+        <div><b data-count="0">0</b><span data-i18n="st.stat3">lines of code</span></div>
+      </div>
+    </div>
+
+    <aside class="mission reveal" aria-label="Your progress">
+      <header class="mission-head"><b data-i18n="st.yourprog">Your progress</b><small data-i18n="st.saved">saved in this browser</small></header>
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb45c"/><stop offset=".55" stop-color="#ff7a2e"/><stop offset="1" stop-color="#ff4d1a"/></linearGradient></defs>
+          <circle class="ring-bg" cx="60" cy="60" r="50" pathLength="100"/>
+          <circle class="ring-fg" cx="60" cy="60" r="50" pathLength="100"/>
+        </svg>
+        <div class="ring-c"><b id="done-n">0</b><small>/ 7</small></div>
+      </div>
+      <ol class="mini-steps">
+        <li><a href="#step-1" data-step-link="1"><i>1</i><span data-i18n="r1">GitHub account</span></a></li>
+        <li><a href="#step-2" data-step-link="2"><i>2</i><span data-i18n="r2">Cloudflare account</span></a></li>
+        <li><a href="#step-3" data-step-link="3"><i>3</i><span data-i18n="r3">EU database</span></a></li>
+        <li><a href="#step-4" data-step-link="4"><i>4</i><span data-i18n="r4">Deploy</span></a></li>
+        <li><a href="#step-5" data-step-link="5"><i>5</i><span data-i18n="r5">Sign up</span></a></li>
+        <li><a href="#step-6" data-step-link="6"><i>6</i><span data-i18n="r6">Connect your agent</span></a></li>
+        <li><a href="#step-7" data-step-link="7"><i>7</i><span data-i18n="r7">Hand over to your agent</span></a></li>
+      </ol>
+      <a class="next-up" href="#step-1"><span><small data-i18n="st.next">Next up</small><b id="next-title">Create a GitHub account</b></span><em data-i18n="st.alldoneShort">All done – your agent takes it from here</em><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================== WHAT YOU NEED + AI AGENT ============================== -->
+<section class="st-need" id="need" aria-labelledby="need-title">
+  <div class="wrap">
+    <p class="eyebrow dark reveal" data-i18n="st.before">Before you start</p>
+    <h2 id="need-title" class="reveal" data-i18n="st.need">What you need</h2>
+    <div class="need-grid">
+      <article class="need-card reveal spot">
+        <span class="need-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18.5h10.2a4.3 4.3 0 0 0 .5-8.6A6.2 6.2 0 0 0 5.9 9.4 4.6 4.6 0 0 0 7 18.5z"/></svg></span>
+        <h3 data-i18n="st.n1">A Cloudflare account</h3>
+        <p data-i18n="st.n1d">Where your portal runs – with your data in the EU.</p>
+        <span class="pill" data-i18n="st.free">Free</span>
+      </article>
+      <article class="need-card reveal spot">
+        <span class="need-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6.5" cy="5.5" r="2.3"/><circle cx="6.5" cy="18.5" r="2.3"/><circle cx="17.5" cy="8" r="2.3"/><path d="M6.5 7.8v8.4M17.5 10.3c0 4.2-6.6 3.4-10.4 6.4"/></svg></span>
+        <h3 data-i18n="st.n2">A GitHub account</h3>
+        <p data-i18n="st.n2d">Where Cloudflare keeps your own copy of the app.</p>
+        <span class="pill" data-i18n="st.free">Free</span>
+      </article>
+      <article class="need-card reveal spot">
+        <span class="need-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg></span>
+        <h3 data-i18n="st.n3">An AI agent, for example Claude</h3>
+        <p data-i18n="st.n3d">The free Claude plan is enough to connect it.</p>
+        <span class="pill" data-i18n="st.free">Free</span>
+      </article>
+      <article class="need-card shop reveal spot">
+        <span class="need-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9l1.5-5h13L20 9"/><path d="M4 9h16v2a3 3 0 01-5.3 1.9A3 3 0 0112 14a3 3 0 01-2.7-1.1A3 3 0 014 11z"/><path d="M5.5 13.5V20h13v-6.5"/></svg></span>
+        <h3 data-i18n="st.n4">Your online shop – any system</h3>
+        <p data-i18n="st.n4d">WooCommerce connects with a read-only key. Shopify, Wix, Squarespace or your own website: your agent reads your products.</p>
+        <span class="pill hot" data-i18n="st.any">Any shop</span>
+      </article>
+    </div>
+
+    <article class="ai-card reveal" id="agent">
+      <div class="ai-copy">
+        <p class="eyebrow" data-i18n="st.aiEyebrow">New to AI agents?</p>
+        <h2 data-i18n="st.ai">What’s an AI agent?</h2>
+        <p data-i18n="st.aip">An AI agent is an AI assistant – like Claude – that can do more than chat: it can use tools. Here it connects to your trade portal and does the setup work for you: it reads your products, writes the texts in four languages and sets your prices and terms. You stay in charge: it asks you when it needs something, it can never change your bank details, and it never approves customers, large orders or prices itself.</p>
+        <p class="ai-get"><span data-i18n="st.aiget">Don’t have one yet? Create a free account at claude.ai, or install the Claude app for Mac or Windows. That’s all you need.</span></p>
+        <p class="ai-links"><a class="btn small" href="https://claude.ai" rel="noopener">claude.ai<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a><a class="btn small ghost" href="https://claude.com/download" rel="noopener">claude.com/download</a></p>
+      </div>
+      <div class="ai-diagram" aria-hidden="true">
+        <div class="ai-flow">
+          <div class="node you"><span class="node-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-3.6 3.6-5.6 7-5.6s6.2 2 7 5.6"/></svg></span><b data-i18n="ai.you">You</b></div>
+          <div class="wire"><i></i><i></i><i></i></div>
+          <div class="node agent"><span class="node-ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg></span><b data-i18n="ai.agent">Your AI agent</b></div>
+          <div class="wire rev"><i></i><i></i><i></i></div>
+          <div class="node portal"><span class="node-ic"><svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M12 7.5 7.5 10v4l4.5 2.5 4.5-2.5v-4z" class="fill"/></svg></span><b data-i18n="ai.portal">Your portal</b></div>
+        </div>
+        <div class="ai-lists">
+          <div class="does"><h4 data-i18n="ai.doT">Does the work</h4>
+            <ul><li data-i18n="ai.do1">Reads your products</li><li data-i18n="ai.do2">Writes DE · FR · IT · EN</li><li data-i18n="ai.do3">Sets prices and terms</li><li data-i18n="ai.do4">Invites trade customers</li></ul></div>
+          <div class="asks"><h4 data-i18n="ai.noT">Always asks you</h4>
+            <ul><li data-i18n="ai.no1">Bank details</li><li data-i18n="ai.no2">Customer approvals</li><li data-i18n="ai.no3">Prices going live</li></ul></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== STEPS ============================== -->
+<section class="st-steps" id="steps" aria-labelledby="steps-title">
+  <div class="wrap">
+    <p class="eyebrow dark reveal" data-i18n="st.eyebrow2">Seven steps · about 15 minutes</p>
+    <h2 id="steps-title" class="reveal" data-i18n="st.steps">Step by step</h2>
+  </div>
+  <div class="wrap steps-grid">
+    <nav class="rail" aria-label="Steps">
+      <div class="rail-line" aria-hidden="true"><span></span></div>
+      <ol>
+        <li><a href="#step-1" data-step-link="1"><i>1</i><span data-i18n="r1">GitHub account</span><small>2′</small></a></li>
+        <li><a href="#step-2" data-step-link="2"><i>2</i><span data-i18n="r2">Cloudflare account</span><small>2′</small></a></li>
+        <li><a href="#step-3" data-step-link="3"><i>3</i><span data-i18n="r3">EU database</span><small>1′</small></a></li>
+        <li><a href="#step-4" data-step-link="4"><i>4</i><span data-i18n="r4">Deploy</span><small>3′</small></a></li>
+        <li><a href="#step-5" data-step-link="5"><i>5</i><span data-i18n="r5">Sign up</span><small>2′</small></a></li>
+        <li><a href="#step-6" data-step-link="6"><i>6</i><span data-i18n="r6">Connect your agent</span><small>2′</small></a></li>
+        <li><a href="#step-7" data-step-link="7"><i>7</i><span data-i18n="r7">Hand over to your agent</span><small>3′</small></a></li>
+      </ol>
+    </nav>
+
+    <ol class="gsteps">
+      <!-- 1 · GitHub -->
+      <li class="gstep" id="step-1" data-step="1">
+        <header class="gs-head"><span class="gs-n">1</span><div><h3 data-i18n="s1.h">Create a GitHub account</h3>
+          <p class="gs-meta"><span class="t">≈ 2 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span><span class="free" data-i18n="st.free">Free</span></p></div></header>
+        <div class="gs-body">
+          <div class="gs-text">
+            <ol><li data-i18n="s1.a">Go to github.com/signup.</li><li data-i18n="s1.b">Enter your email, a password and a username, then confirm the code GitHub emails you.</li><li data-i18n="s1.c">The free plan is all you need.</li></ol>
+            <p class="why"><a href="https://github.com/signup" rel="noopener">github.com/signup ↗</a> · <span data-i18n="s1.why">Why: Cloudflare puts your own copy of MoltenRock Trade there, and updates arrive the same way.</span></p>
+          </div>
+          <figure class="mock mock-form" aria-hidden="true">
+            <div class="mock-bar"><i></i><i></i><i></i><span>github.com/signup</span></div>
+            <div class="mock-body">
+              <div class="field"><label>Email</label><div class="input typed" data-type="you@yourshop.ch"></div></div>
+              <div class="field"><label>Password</label><div class="input typed pw" data-type="••••••••••••"></div></div>
+              <div class="field"><label>Username</label><div class="input typed" data-type="yourshop"></div></div>
+              <div class="mock-cta neutral">Create account <b>✓</b></div>
+            </div>
+          </figure>
+        </div>
+        <footer class="gs-foot"><button class="done-btn" type="button" data-done="1" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
+      </li>
+
+      <!-- 2 · Cloudflare -->
+      <li class="gstep" id="step-2" data-step="2">
+        <header class="gs-head"><span class="gs-n">2</span><div><h3 data-i18n="s2.h">Create a Cloudflare account</h3>
+          <p class="gs-meta"><span class="t">≈ 2 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span><span class="free" data-i18n="st.free">Free</span></p></div></header>
+        <div class="gs-body">
+          <div class="gs-text">
+            <ol><li data-i18n="s2.a">Go to dash.cloudflare.com/sign-up.</li><li data-i18n="s2.b">Enter your email and a password, then confirm the email Cloudflare sends you.</li><li data-i18n="s2.c">Stay on the free plan.</li></ol>
+            <p class="why"><a href="https://dash.cloudflare.com/sign-up" rel="noopener">dash.cloudflare.com/sign-up ↗</a></p>
+          </div>
+          <figure class="mock mock-form" aria-hidden="true">
+            <div class="mock-bar"><i></i><i></i><i></i><span>dash.cloudflare.com/sign-up</span></div>
+            <div class="mock-body">
+              <div class="field"><label>Email</label><div class="input typed" data-type="you@yourshop.ch"></div></div>
+              <div class="field"><label>Password</label><div class="input typed pw" data-type="••••••••••••"></div></div>
+              <div class="plan"><span class="plan-dot"></span><b>Free</b><small>$0 / month</small><em>✓</em></div>
+              <div class="mock-cta">Sign up</div>
+            </div>
+          </figure>
+        </div>
+        <footer class="gs-foot"><button class="done-btn" type="button" data-done="2" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
+      </li>
+
+      <!-- 3 · EU database -->
+      <li class="gstep" id="step-3" data-step="3">
+        <header class="gs-head"><span class="gs-n">3</span><div><h3 data-i18n="s3.h">Create your database in the EU (recommended)</h3>
+          <p class="gs-meta"><span class="t">≈ 1 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span><span class="free">EU</span></p></div></header>
+        <div class="gs-body">
+          <div class="gs-text">
+            <ol><li data-i18n="s3.a">In Cloudflare, open D1 SQL Database (under Storage &amp; Databases) and click Create Database.</li><li data-i18n="s3.b">Name it exactly moltenrock-trade.</li><li data-i18n="s3.c">Data location: Specify jurisdiction → eu. Then click Create.</li></ol>
+            <p class="note" data-i18n="s3.note">Do this before step 4: the data location can only be chosen when the database is created. If you skip it, Cloudflare creates the database for you – then without the EU setting.</p>
+          </div>
+          <figure class="mock mock-db" aria-hidden="true">
+            <div class="mock-bar"><i></i><i></i><i></i><span>D1 SQL Database · Create</span></div>
+            <div class="mock-body">
+              <div class="field"><label>Database name</label><div class="input typed mono" data-type="moltenrock-trade"></div></div>
+              <div class="field"><label>Data location</label>
+                <div class="select"><span>Specify jurisdiction</span><b>▾</b></div>
+                <ul class="options"><li>Automatic</li><li class="pick"><span class="eu"><i></i><i></i><i></i><i></i><i></i></span>eu <small>European Union</small></li><li>fedramp</li></ul>
+              </div>
+              <div class="mock-cta">Create</div>
+            </div>
+          </figure>
+        </div>
+        <footer class="gs-foot"><button class="done-btn" type="button" data-done="3" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
+      </li>
+
+      <!-- 4 · Deploy -->
+      <li class="gstep" id="step-4" data-step="4">
+        <header class="gs-head"><span class="gs-n">4</span><div><h3 data-i18n="s4.h">Click “Deploy to Cloudflare”</h3>
+          <p class="gs-meta"><span class="t">≈ 3 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span><span class="free" data-i18n="st.free">Free</span></p></div></header>
+        <div class="gs-body">
+          <div class="gs-text">
+            <p><a class="btn magnetic deploy" href="https://deploy.workers.cloudflare.com/?url=https://github.com/Goldcote/moltenrock-trade" rel="noopener"><span data-i18n="st.cta">Deploy to Cloudflare</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
+            <ol><li data-i18n="s4.a">Sign in to Cloudflare and connect your GitHub account when asked.</li><li data-i18n="s4.owner">If it asks for OWNER_EMAIL, enter your own email: only that address can set up the shop.</li><li data-i18n="s4.b">Leave the names as they are (moltenrock-trade) and click Create and deploy. It takes about two minutes.</li><li data-i18n="s4.c">At the end you get your address, like https://moltenrock-trade.your-name.workers.dev.</li></ol>
+          </div>
+          <figure class="mock mock-term" aria-hidden="true">
+            <div class="mock-bar dark"><i></i><i></i><i></i><span>Workers Builds · moltenrock-trade</span></div>
+            <div class="mock-body">
+              <p><b>›</b> Cloning your copy of moltenrock-trade</p>
+              <p><b>›</b> Installing · building</p>
+              <p><b>›</b> Database moltenrock-trade <em>eu</em></p>
+              <p><b>›</b> Uploading worker + assets</p>
+              <div class="build-bar"><span></span></div>
+              <p class="ok">✓ Success · deployed in 1m 48s</p>
+              <p class="url">https://moltenrock-trade.your-name.workers.dev</p>
+            </div>
+          </figure>
+        </div>
+        <footer class="gs-foot"><button class="done-btn" type="button" data-done="4" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
+      </li>
+
+      <!-- 5 · Sign up -->
+      <li class="gstep" id="step-5" data-step="5">
+        <header class="gs-head"><span class="gs-n">5</span><div><h3 data-i18n="s5.h">Open your address and sign up</h3>
+          <p class="gs-meta"><span class="t">≈ 2 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span><span class="free" data-i18n="st.humanOnly">Only a person</span></p></div></header>
+        <div class="gs-body">
+          <div class="gs-text">
+            <ol><li data-i18n="s5.a">Enter your company, UID number and IBAN – that’s what appears on your invoices. You’re signed in straight away.</li></ol>
+            <p class="why" data-i18n="s5.why">Your agent can never change these details – only you can.</p>
+          </div>
+          <figure class="mock mock-form" aria-hidden="true">
+            <div class="mock-bar"><i></i><i></i><i></i><span>moltenrock-trade.your-name.workers.dev</span></div>
+            <div class="mock-body">
+              <div class="field"><label data-i18n="how.m1a">Company</label><div class="input typed" data-type="Alpenrose Handels AG"></div></div>
+              <div class="field"><label>UID</label><div class="input typed" data-type="CHE-123.456.788"></div></div>
+              <div class="field"><label>IBAN</label><div class="input typed" data-type="CH93 0076 2011 6238 5295 7"></div></div>
+              <div class="mock-cta" data-i18n="how.m1b">Create portal</div>
+            </div>
+          </figure>
+        </div>
+        <footer class="gs-foot"><button class="done-btn" type="button" data-done="5" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
+      </li>
+
+      <!-- 6 · Connect -->
+      <li class="gstep" id="step-6" data-step="6">
+        <header class="gs-head"><span class="gs-n">6</span><div><h3 data-i18n="s6.h">Connect your AI agent</h3>
+          <p class="gs-meta"><span class="t">≈ 2 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span><span class="free" data-i18n="st.free">Free</span></p></div></header>
+        <div class="gs-body wide">
+          <div class="gs-text">
+            <div class="two">
+              <div class="opt"><h4 data-i18n="s6.claude">Claude app – the free plan works</h4><ol><li data-i18n="s6.c1">Open Customize → Connectors, click + and then Add custom connector.</li><li><span data-i18n="s6.c2">Name: MoltenRock Trade. Address: your portal address followed by /mcp, for example:</span> <code>https://moltenrock-trade.your-name.workers.dev/mcp</code></li><li data-i18n="s6.c3">Click Connect, sign in to your portal and click Allow.</li></ol></div>
+              <div class="opt"><h4 data-i18n="s6.code">Claude Code – paid Claude plan</h4><ol><li><span data-i18n="s6.k1">Install it (Mac and Linux; Windows: see code.claude.com):</span><div class="copybox cmd"><pre id="cmd-install">curl -fsSL https://claude.ai/install.sh | bash</pre><button class="btn small copy" type="button" data-copy="cmd-install" data-i18n="copy">Copy</button></div></li>
+                <li><span data-i18n="s6.k2">Connect it to your portal:</span><div class="copybox cmd"><pre id="cmd-connect">claude mcp add --transport http moltenrock-trade https://moltenrock-trade.your-name.workers.dev/mcp</pre><button class="btn small copy" type="button" data-copy="cmd-connect" data-i18n="copy">Copy</button></div></li><li data-i18n="s6.k3">Then type /mcp in Claude Code, choose moltenrock-trade and Authenticate, and click Allow in your portal.</li></ol></div>
+            </div>
+          </div>
+          <figure class="mock mock-connect" aria-hidden="true">
+            <div class="mock-bar"><i></i><i></i><i></i><span>Claude · Connectors</span></div>
+            <div class="mock-body">
+              <p class="mock-h" data-i18n="how.m2">Add custom connector</p>
+              <div class="field"><label data-i18n="how.m2a">Name</label><div class="input">MoltenRock Trade</div></div>
+              <div class="field"><label data-i18n="how.m2b">Address</label><div class="input typed url" data-type="https://moltenrock-trade.your-name.workers.dev/mcp"></div></div>
+              <div class="consent"><p><b data-i18n="how.m2c">Connect Claude</b></p><p class="muted" data-i18n="how.m2d">Set up and run the portal · never your bank details</p><div class="mock-cta pulse" data-i18n="how.m2e">Allow</div></div>
+            </div>
+          </figure>
+        </div>
+        <footer class="gs-foot"><button class="done-btn" type="button" data-done="6" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
+      </li>
+
+      <!-- 7 · Hand over -->
+      <li class="gstep" id="step-7" data-step="7">
+        <header class="gs-head"><span class="gs-n">7</span><div><h3 data-i18n="s7.h">Paste these instructions into your agent</h3>
+          <p class="gs-meta"><span class="t">≈ 3 <span data-i18n="st.min">min</span></span><span class="who agent" data-i18n="st.thenAgent">You, then your agent</span></p></div></header>
+        <div class="gs-body wide">
+          <div class="gs-text">
+            <p data-i18n="s7.a">Copy this and send it to your agent. It works through the setup and asks you whenever it needs something.</p>
+            <div class="copybox prompt"><pre id="prompt-setup" data-i18n="st.prompt.setup">Set up my MoltenRock Trade portal. Start with get_setup_status and follow next_action until everything is done.
+– Ask me which shop system I use. WooCommerce: ask me for a read-only key and tell me exactly where to click (WooCommerce → Settings → Advanced → REST API → Add key, Permissions: Read). Any other shop – Shopify, Wix, Squarespace, my own website – or a spreadsheet I give you: read the products yourself and add them with upsert_products, with the page each price came from. Never guess a price.
+– Write every product text in German, French, Italian and English. Swiss German uses “ss”, never “ß”.
+– Go through the defaults with me one at a time, in plain words, and only change what I ask for.
+– Never approve anything yourself, prices included: prepare it and tell me to confirm it under Approvals.
+– When you’re done, give me a short summary and the link to my status page.</pre><button class="btn small copy" type="button" data-copy="prompt-setup" data-i18n="copy">Copy</button></div>
+            <p class="why" data-i18n="s7.b">Then, in your portal under Setup, confirm the terms and privacy notice and set up email.</p>
+          </div>
+          <figure class="mock mock-chat" aria-hidden="true">
+            <div class="mock-bar dark"><i></i><i></i><i></i><span>Claude · moltenrock-trade</span></div>
+            <div class="mock-body">
+              <div class="msg user" data-i18n="how.say">Set up my trade portal.</div>
+              <div class="msg agent"><span class="tool">get_setup_status</span><span data-i18n="ch.a1">Which shop system do you use?</span></div>
+              <div class="msg user" data-i18n="ch.u1">Shopify – everything is on our website.</div>
+              <div class="msg agent"><span class="tool">upsert_products</span><span data-i18n="ch.a2">Read 24 products from your website and wrote them in German, French, Italian and English.</span><span class="bar"><b></b></span></div>
+              <div class="msg agent"><span class="tool">get_setup_status</span><span data-i18n="ch.a3">24 prices are waiting for you under Approvals. Nothing is orderable until you confirm.</span></div>
+            </div>
+          </figure>
+        </div>
+        <footer class="gs-foot"><button class="done-btn" type="button" data-done="7" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================== FINISH ============================== -->
+<section class="st-finish" id="finish" aria-labelledby="finish-title">
+  <div class="wrap">
+    <article class="finish-card reveal">
+      <div class="finish-glow" aria-hidden="true"></div>
+      <div class="finish-copy">
+        <p class="eyebrow" data-i18n="fin.eyebrow">After step 7</p>
+        <h2 id="finish-title"><em class="molten done-only" data-i18n="fin.done">All seven done.</em> <span data-i18n="fin.h">Your agent takes it from here.</span></h2>
+        <p data-i18n="fin.p">While you get on with your day, it reads your catalogue, writes it in four languages and walks you through the defaults. Everything that needs a person lands under Approvals – you confirm with one click.</p>
+      </div>
+      <ul class="finish-ticks">
+        <li data-i18n="fin.t1">Products read from your shop</li>
+        <li data-i18n="fin.t2">Texts in DE, FR, IT and EN</li>
+        <li data-i18n="fin.t3">Prices confirmed by you</li>
+        <li data-i18n="fin.t4">First trade customer invited</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== QUICK WAY ============================== -->
+<section class="st-quick" id="quick" aria-labelledby="quick-title">
+  <div class="wrap quick-grid">
+    <div class="quick-copy reveal">
+      <p class="eyebrow" data-i18n="qw.eyebrow">For Claude Code users</p>
+      <h2 id="quick-title" data-i18n="qw.h">The quick way: let Claude Code deploy it for you</h2>
+      <p class="lead" data-i18n="qw.a">With Claude Code (paid Claude plan) you can skip steps 3 and 4: it creates the EU database and deploys for you. You only sign in to Cloudflare in your browser when it asks. Paste this, then continue with step 5:</p>
+      <p class="why" data-i18n="qw.note">This way your copy lives on your computer instead of GitHub – the update guide covers both.</p>
+    </div>
+    <div class="terminal reveal">
+      <div class="win-bar"><i></i><i></i><i></i><span>Claude Code</span></div>
+      <div class="copybox prompt"><pre id="prompt-deploy" data-i18n="st.prompt.deploy">Deploy MoltenRock Trade on my own Cloudflare account, with the data in the EU.
+1. Clone https://github.com/Goldcote/moltenrock-trade into a new folder and run npm install.
+2. Run npx wrangler login and wait while I sign in to Cloudflare in my browser.
+3. Create the database in the EU: npx wrangler d1 create moltenrock-trade --jurisdiction eu
+4. Deploy: npx wrangler deploy
+5. Tell me the https address it prints. Then stop: I sign up on that page myself.
+Never ask me for passwords or keys in this chat.</pre><button class="btn small copy" type="button" data-copy="prompt-deploy" data-i18n="copy">Copy</button></div>
+    </div>
+  </div>
+  <div class="wrap"><p class="fine cost reveal" data-i18n="st.cost">Cost: CHF 0 on the free plans. Optional: one-click invoice PDFs need Workers Paid (USD 5 a month); the print-ready QR-bill page is free.</p></div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div><a class="brand" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5 7.5 10v4l4.5 2.5 4.5-2.5v-4z" fill="currentColor"/></svg><span>MoltenRock Trade</span></a>
+      <p class="muted" data-i18n="foot.by">A Goldcote product. Built for Swiss B2B.</p></div>
+    <div class="foot-links"><a href="/" data-i18n="nav.home">Home</a><a href="/#how" data-i18n="nav.how">How it works</a><a href="/#features" data-i18n="nav.features">Features</a><a href="/#faq" data-i18n="nav.faq">FAQ</a><a href="/imprint" data-i18n="foot.imprint">Legal notice</a><a href="/privacy" data-i18n="foot.privacy">Privacy</a></div>
+    <p class="fine" data-i18n="foot.fine">WooCommerce, Shopify, Wix, Squarespace, GitHub and Cloudflare are trademarks of their respective owners. MoltenRock Trade is not affiliated with any of them.</p>
+  </div>
+</footer>
+</body>
+</html>

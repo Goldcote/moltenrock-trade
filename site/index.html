@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MoltenRock Trade — the Swiss B2B trade portal your AI agent sets up</title>
+<meta name="description" content="Give any online shop a Swiss B2B trade portal: tier prices, QR-bill invoices, four languages. WooCommerce, Shopify, Wix or your own website – your AI agent sets it up, you only approve what matters. Free, fair source, on your own Cloudflare account.">
+<meta property="og:title" content="MoltenRock Trade — your shop, now wholesale">
+<meta property="og:description" content="A Swiss B2B trade portal for any online shop, set up by your AI agent. QR-bill invoices, DE · FR · IT · EN, Net 14.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://moltenrocktrade.com/">
+<link rel="canonical" href="https://moltenrocktrade.com/">
+<meta property="og:image" content="https://moltenrocktrade.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MoltenRock Trade — your shop, now wholesale">
+<meta property="og:site_name" content="MoltenRock Trade">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0b0c0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 3 7v10l9 5 9-5V7z' fill='none' stroke='%23ff5a1f' stroke-width='1.8'/%3E%3Cpath d='M12 7.5 7.5 10v4l4.5 2.5 4.5-2.5v-4z' fill='%23ff5a1f'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/site.css?v=0.3.0">
+<script src="/assets/site.js?v=0.3.0" defer></script>
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<header class="nav" id="top">
+  <a class="brand" href="#top" aria-label="MoltenRock Trade home">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5 7.5 10v4l4.5 2.5 4.5-2.5v-4z" fill="currentColor"/></svg>
+    <span>MoltenRock Trade</span>
+  </a>
+  <nav class="links" aria-label="Sections">
+    <a href="#how" data-i18n="nav.how">How it works</a>
+    <a href="#anyshop" data-i18n="nav.any">Any shop</a>
+    <a href="#features" data-i18n="nav.features">Features</a>
+    <a href="#agents" data-i18n="nav.agents">For agents</a>
+    <a href="#free" data-i18n="nav.pricing">Pricing</a>
+    <a href="#faq" data-i18n="nav.faq">FAQ</a>
+  </nav>
+  <div class="nav-right">
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="de">DE</button><button data-lang="fr">FR</button><button data-lang="it">IT</button><button data-lang="en" class="on">EN</button>
+    </div>
+    <a class="btn small magnetic" href="/start"><span data-i18n="cta.start">Start free</span></a>
+  </div>
+</header>
+
+<main>
+<!-- ============================== HERO ============================== -->
+<section class="hero" aria-labelledby="hero-title">
+  <canvas class="lava" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="chip reveal"><span class="dot"></span><span data-i18n="hero.chip">For any Swiss online shop · free &amp; fair source</span></p>
+      <h1 id="hero-title" class="reveal">
+        <span data-i18n="hero.h1a">Your shop,</span><br>
+        <span data-i18n="hero.h1b">now</span> <em class="molten" data-i18n="hero.h1c">wholesale.</em>
+      </h1>
+      <p class="lead reveal" data-i18n="hero.lead">A Swiss B2B trade portal for your online shop – WooCommerce, Shopify, Wix or your own website. Tier prices, QR-bill invoices, four languages. Your AI agent sets it up while you watch. You only approve what matters.</p>
+      <div class="hero-cta reveal">
+        <a class="btn big magnetic" href="/start"><span data-i18n="cta.start">Start free</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn ghost big" href="#how"><span data-i18n="cta.watch">See how it works</span></a>
+      </div>
+      <ul class="trust reveal">
+        <li data-i18n="trust.any">Any shop system</li>
+        <li data-i18n="trust.qr">Swiss QR-bill</li>
+        <li>DE · FR · IT · EN</li>
+        <li data-i18n="trust.vat">MWST-ready</li>
+        <li data-i18n="trust.eu">Your Cloudflare, EU data</li>
+      </ul>
+    </div>
+
+    <div class="stage3d" aria-hidden="true">
+      <div class="scene">
+        <div class="window">
+          <div class="win-bar"><i></i><i></i><i></i><span>Claude · moltenrock-trade</span></div>
+          <div class="chat" id="chat"></div>
+        </div>
+        <div class="float kpi-float">
+          <small data-i18n="float.month">This month</small>
+          <b>CHF <span class="kpi-num">18’694</span></b>
+          <svg viewBox="0 0 120 34"><path d="M0 30 L15 26 L30 28 L45 18 L60 21 L75 12 L90 15 L105 6 L120 8" /></svg>
+        </div>
+        <div class="float bill-float">
+          <div class="bill-head"><b data-i18n="float.invoice">Invoice</b><span>000073</span></div>
+          <div class="bill-row"><span data-i18n="float.net">Net</span><span>532.15</span></div>
+          <div class="bill-row"><span>MWST 8.1 %</span><span>43.13</span></div>
+          <div class="bill-row total"><span>CHF</span><span>575.28</span></div>
+          <div class="qr-mini"></div>
+        </div>
+        <div class="float toast-float">
+          <div class="toast-ic">✦</div>
+          <div><b>Hôtel des Alpes Sàrl</b><small data-i18n="float.applied">applied for a trade account</small></div>
+          <button tabindex="-1" data-i18n="float.approve">Approve</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="scroll-hint" href="#numbers" aria-label="Scroll"><span></span></a>
+</section>
+
+<!-- ============================== NUMBERS ============================== -->
+<section class="numbers" id="numbers">
+  <div class="wrap numbers-grid">
+    <div class="num reveal"><b data-count="0" data-prefix="CHF ">CHF 0</b><span data-i18n="num.hosting">hosting on Cloudflare’s free plan</span></div>
+    <div class="num reveal"><b data-count="3">3</b><span data-i18n="num.pages">pages you ever click — the rest is your agent</span></div>
+    <div class="num reveal"><b data-count="15">15</b><span data-i18n="num.defaults">sensible Swiss defaults, all adjustable</span></div>
+    <div class="num reveal"><b data-count="4">4</b><span data-i18n="num.langs">languages for every product</span></div>
+    <div class="num reveal"><b data-count="0" data-suffix=" %">0 %</b><span data-i18n="num.fees">payment fees — customers pay by invoice</span></div>
+  </div>
+</section>
+
+<!-- ============================== HOW IT WORKS ============================== -->
+<section class="how" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="how.eyebrow">How it works</p>
+    <h2 id="how-title" class="reveal" data-i18n="how.title">Three steps. Two are yours. One sentence.</h2>
+  </div>
+  <div class="wrap how-grid">
+    <div class="how-visual" aria-hidden="true">
+      <div class="device">
+        <div class="screen s1 on">
+          <p class="mock-title" data-i18n="how.m1">Set up your trade portal</p>
+          <div class="field"><label data-i18n="how.m1a">Company</label><div class="input typed" data-type="Alpenrose Handels AG"></div></div>
+          <div class="field"><label>UID</label><div class="input typed" data-type="CHE-123.456.788"></div></div>
+          <div class="field"><label>IBAN</label><div class="input typed" data-type="CH93 0076 2011 6238 5295 7"></div></div>
+          <div class="mock-btn" data-i18n="how.m1b">Create portal</div>
+        </div>
+        <div class="screen s2">
+          <p class="mock-title" data-i18n="how.m2">Add custom connector</p>
+          <div class="field"><label data-i18n="how.m2a">Name</label><div class="input">MoltenRock Trade</div></div>
+          <div class="field"><label data-i18n="how.m2b">Address</label><div class="input url">https://b2b.alpenrose.ch/mcp</div></div>
+          <div class="consent">
+            <p><b data-i18n="how.m2c">Connect Claude</b></p>
+            <p class="muted" data-i18n="how.m2d">Set up and run the portal · never your bank details</p>
+            <div class="mock-btn pulse" data-i18n="how.m2e">Allow</div>
+          </div>
+        </div>
+        <div class="screen s3">
+          <p class="mock-title">“<span data-i18n="how.say">Set up my trade portal.</span>”</p>
+          <ul class="ticks">
+            <li data-i18n="how.t1">Products read from your shop</li>
+            <li data-i18n="how.t2">27 products imported</li>
+            <li data-i18n="how.t3">Texts in DE, FR, IT and EN</li>
+            <li data-i18n="how.t4">Terms confirmed with you</li>
+            <li data-i18n="how.t5">First trade customer invited</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <ol class="how-steps">
+      <li class="step" data-screen="s1">
+        <span class="step-n">1</span>
+        <h3 data-i18n="how.s1">Sign up in two minutes</h3>
+        <p data-i18n="how.s1p">Company, VAT number, IBAN — that’s what appears on your invoices. Only a person can ever change it, never an agent.</p>
+      </li>
+      <li class="step" data-screen="s2">
+        <span class="step-n">2</span>
+        <h3 data-i18n="how.s2">Connect your AI agent</h3>
+        <p data-i18n="how.s2p">Paste one address into Claude, sign in, click Allow. No keys to copy, no config files. Disconnect it any time.</p>
+      </li>
+      <li class="step" data-screen="s3">
+        <span class="step-n">3</span>
+        <h3 data-i18n="how.s3">Say: “Set up my trade portal.”</h3>
+        <p data-i18n="how.s3p">Your agent reads your catalogue – with a read-only key on WooCommerce, straight from your website on any other shop – writes every product in German, French, Italian and English, walks you through the defaults and invites your first trade customer.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================== ANY SHOP ============================== -->
+<section class="anyshop" id="anyshop" aria-labelledby="any-title">
+  <div class="wrap any-head">
+    <div>
+      <p class="eyebrow dark reveal" data-i18n="any.eyebrow">Any shop</p>
+      <h2 id="any-title" class="reveal" data-i18n="any.title">Your shop system doesn’t matter.</h2>
+    </div>
+    <p class="lead reveal" data-i18n="any.lead">WooCommerce connects directly with a read-only key. Shopify, Wix, Squarespace, your own website or just a spreadsheet: your agent reads your products, writes them in four languages – and you confirm every price before a trade customer can order.</p>
+  </div>
+  <div class="wrap">
+    <ul class="systems reveal">
+      <li class="direct"><b>WooCommerce</b><small data-i18n="any.direct">direct · read-only key</small></li>
+      <li><b>Shopify</b><small data-i18n="any.via">via your agent</small></li>
+      <li><b>Wix</b><small data-i18n="any.via">via your agent</small></li>
+      <li><b>Squarespace</b><small data-i18n="any.via">via your agent</small></li>
+      <li><b data-i18n="any.own">Your own website</b><small data-i18n="any.via">via your agent</small></li>
+      <li><b data-i18n="any.sheet">A spreadsheet</b><small data-i18n="any.via">via your agent</small></li>
+    </ul>
+    <div class="any-stage reveal" aria-hidden="true">
+      <div class="any-site">
+        <div class="any-bar"><i></i><i></i><i></i><span>yourshop.ch/products</span></div>
+        <div class="site-grid">
+          <div class="tile"><span class="thumb t1"></span><span class="tl"></span><span class="tl short"></span><em>CHF 18.90</em></div>
+          <div class="tile"><span class="thumb t2"></span><span class="tl"></span><span class="tl short"></span><em>CHF 14.50</em></div>
+          <div class="tile"><span class="thumb t3"></span><span class="tl"></span><span class="tl short"></span><em>CHF 22.90</em></div>
+          <div class="tile"><span class="thumb t4"></span><span class="tl"></span><span class="tl short"></span><em>CHF 39.00</em></div>
+        </div>
+        <div class="scan"></div>
+      </div>
+      <div class="any-pipe"><span>upsert_products</span><i></i><i></i><i></i></div>
+      <div class="any-queue">
+        <header><b data-i18n="any.qTitle">Prices to confirm</b><span class="q-count">0</span></header>
+        <ul>
+          <li><span class="nm" data-i18n="any.p1">Linen hand towel</span><span class="tag" data-i18n="any.new">New</span><b>CHF 18.90</b><span class="ok">✓</span></li>
+          <li><span class="nm" data-i18n="any.p2">Stoneware mug</span><span class="tag" data-i18n="any.new">New</span><b>CHF 14.50</b><span class="ok">✓</span></li>
+          <li><span class="nm" data-i18n="any.p3">Glass bottle 0.5 l</span><span class="tag" data-i18n="any.new">New</span><b>CHF 22.90</b><span class="ok">✓</span></li>
+          <li><span class="nm" data-i18n="any.p4">Room diffuser</span><span class="tag" data-i18n="any.new">New</span><b>CHF 39.00</b><span class="ok">✓</span></li>
+        </ul>
+        <div class="q-btn"><span data-i18n="any.confirm">Confirm all</span></div>
+        <p class="q-done" data-i18n="any.live">Orderable for your trade customers</p>
+      </div>
+    </div>
+    <ol class="any-caps reveal">
+      <li data-i18n="any.c1">Your agent reads your product pages</li>
+      <li data-i18n="any.c2">You confirm each price – once</li>
+      <li data-i18n="any.c3">Your trade customers can order</li>
+    </ol>
+    <p class="any-note reveal" data-i18n="any.note">A price changes on your website? The confirmed price stays in force until you confirm the new one.</p>
+  </div>
+</section>
+
+<!-- ============================== FEATURES ============================== -->
+<section class="features" id="features" aria-labelledby="feat-title">
+  <div class="wrap">
+    <p class="eyebrow dark reveal" data-i18n="feat.eyebrow">Features</p>
+    <h2 id="feat-title" class="reveal" data-i18n="feat.title">Everything Swiss B2B needs. Nothing it doesn’t.</h2>
+  </div>
+  <div class="wrap bento">
+    <!-- calculator -->
+    <article class="card calc reveal spot">
+      <h3 data-i18n="calc.title">Trade prices, calculated like your accountant would</h3>
+      <p class="muted" data-i18n="calc.sub">Discount off the price excluding VAT, MWST on its own line, rounded once. Try it:</p>
+      <div class="calc-ui">
+        <div class="calc-controls">
+          <label for="basket"><span data-i18n="calc.list">Shop list value (incl. VAT)</span> <output id="basket-out">CHF 1’200</output></label>
+          <input id="basket" type="range" min="100" max="12000" step="50" value="1200">
+          <div class="seg" role="radiogroup" aria-label="Tier">
+            <button class="on" data-tier="4000">Standard −40 %</button>
+            <button data-tier="5000">VIP −50 %</button>
+            <button data-tier="4500" data-i18n="calc.partner">Partner −45 %</button>
+          </div>
+        </div>
+        <div class="calc-out">
+          <div class="row"><span data-i18n="calc.net">Net list price</span><b id="c-list">—</b></div>
+          <div class="row"><span data-i18n="calc.disc">Trade discount</span><b id="c-disc">—</b></div>
+          <div class="row"><span data-i18n="calc.subtotal">Net subtotal</span><b id="c-net">—</b></div>
+          <div class="row"><span>MWST 8.1 %</span><b id="c-vat">—</b></div>
+          <div class="row total"><span data-i18n="calc.total">Invoice total</span><b id="c-total">—</b></div>
+          <div class="flags"><span class="flag" id="f-min" data-i18n="calc.min">Below the CHF 200 minimum</span><span class="flag" id="f-ok" data-i18n="calc.ok">Confirmed right away</span><span class="flag hot" id="f-appr" data-i18n="calc.appr">Over CHF 5,000 — waits for your approval</span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- QR bill -->
+    <article class="card qr reveal spot">
+      <h3 data-i18n="qr.title">A Swiss QR-bill on every order</h3>
+      <p class="muted" data-i18n="qr.sub">Gapless numbers, SCOR or QRR reference, MWST lines, Net 14. No payment provider — Swiss B2B runs on trust.</p>
+      <div class="slip" aria-hidden="true">
+        <div class="slip-left"><b data-i18n="qr.receipt">Receipt</b><small data-i18n="qr.account">Account / Payable to</small><span>CH44 3199 9123 0008 8901 2</span><span>Alpenrose Handels AG</span><small data-i18n="qr.amount">Amount</small><span>CHF 575.28</span></div>
+        <div class="slip-right"><b data-i18n="qr.payment">Payment part</b><div class="qr-grid" id="qr-grid"></div></div>
+        <div class="scissors">✂</div>
+      </div>
+      <ul class="qr-list">
+        <li data-i18n="qr.l1">Gapless invoice numbers</li>
+        <li data-i18n="qr.l2">SCOR or QR-IBAN reference</li>
+        <li data-i18n="qr.l3">VAT per rate, rounded once</li>
+        <li data-i18n="qr.l4">Credit notes for corrections</li>
+        <li data-i18n="qr.l5">Print-ready page, PDF on request</li>
+      </ul>
+    </article>
+
+    <!-- languages -->
+    <article class="card langs reveal spot">
+      <h3 data-i18n="langs.title">Four languages, one catalogue</h3>
+      <p class="muted" data-i18n="langs.sub">Your agent writes natural Swiss copy — “ss”, never “ß”. Every text shows where it came from.</p>
+      <div class="product" aria-live="polite">
+        <div class="p-img"><div class="bottle"></div></div>
+        <div class="p-body">
+          <div class="p-tabs"><button class="on" data-pl="de">DE</button><button data-pl="fr">FR</button><button data-pl="it">IT</button><button data-pl="en">EN</button></div>
+          <b class="p-name" id="p-name">Olivenöl extra vergine, 500 ml</b>
+          <p class="p-desc" id="p-desc">Kaltgepresst, aus einer einzigen Ernte. Für Küche, Feinkost und Geschenkboxen.</p>
+          <div class="p-meta"><span class="prov" id="p-prov">imported</span><span class="price">CHF 17.40 <small>net</small></span></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- approvals -->
+    <article class="card approve reveal spot">
+      <h3 data-i18n="appr.title">You approve what matters</h3>
+      <p class="muted" data-i18n="appr.sub">New trade accounts, big baskets and credit notes wait for a person. Your agent prepares them.</p>
+      <div class="req" id="req">
+        <div class="req-top"><span class="req-ic">⌂</span><div><b>Hôtel des Alpes Sàrl</b><small>Champéry · UID ✓ · <span data-i18n="appr.rooms">40 rooms</span></small></div></div>
+        <p class="req-note">“<span data-i18n="appr.note">UID checks out. Approve on Standard −40 %?</span>” <small>— Claude</small></p>
+        <div class="req-actions"><button class="yes" data-i18n="appr.yes">Approve</button><button class="no" data-i18n="appr.no">Decline</button></div>
+        <div class="req-done"><span>✓</span> <b data-i18n="appr.done">Approved — invitation sent</b></div>
+      </div>
+    </article>
+
+    <!-- read only -->
+    <article class="card lock reveal spot">
+      <div class="lock-ic" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="10" y="21" width="28" height="20" rx="5"/><path class="shackle" d="M16 21v-6a8 8 0 0 1 16 0v6"/></svg></div>
+      <h3 data-i18n="lock.title">Your shop stays read-only</h3>
+      <p class="muted" data-i18n="lock.sub">MoltenRock Trade only ever reads your shop – with a read-only WooCommerce key, or from your public website. Handing orders back to WooCommerce is optional and off until you switch it on.</p>
+    </article>
+
+    <!-- dashboard -->
+    <article class="card dash reveal spot">
+      <h3 data-i18n="dash.title">A dashboard that gets to the point</h3>
+      <p class="muted" data-i18n="dash.sub">What came in, what waits for you, who owes what — live.</p>
+      <div class="mini-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== AGENTS ============================== -->
+<section class="agents" id="agents" aria-labelledby="agents-title">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="ag.eyebrow">For agents</p>
+    <h2 id="agents-title" class="reveal" data-i18n="ag.title">A back office your AI runs — with guard rails you set.</h2>
+    <p class="lead reveal" data-i18n="ag.lead">There is no settings maze. Your agent does the work over MCP — 35 tools, a REST mirror and llms.txt. Trust and money decisions always come back to you.</p>
+  </div>
+  <div class="marquee reveal" aria-hidden="true">
+    <div class="track">
+      <span>get_setup_status</span><span>connect_shop</span><span>import_catalog</span><span>upsert_products</span><span>bulk_set_translations</span><span>list_missing_translations</span><span>create_tier</span><span>update_settings</span><span>invite_partner</span><span>propose_partner_decision</span><span>propose_basket_decision</span><span>mark_invoice_paid</span><span>get_shop_overview</span><span>get_status_page_link</span><span>get_moltenview_view</span>
+      <span>get_setup_status</span><span>connect_shop</span><span>import_catalog</span><span>upsert_products</span><span>bulk_set_translations</span><span>list_missing_translations</span><span>create_tier</span><span>update_settings</span><span>invite_partner</span><span>propose_partner_decision</span><span>propose_basket_decision</span><span>mark_invoice_paid</span><span>get_shop_overview</span><span>get_status_page_link</span><span>get_moltenview_view</span>
+    </div>
+  </div>
+  <div class="wrap can-grid">
+    <div class="can reveal">
+      <h3 data-i18n="ag.can">Your agent can</h3>
+      <ul>
+        <li data-i18n="ag.c1">Read your catalogue from any shop and translate it</li>
+        <li data-i18n="ag.c2">Set tiers, minimums and payment terms</li>
+        <li data-i18n="ag.c3">Invite trade customers</li>
+        <li data-i18n="ag.c4">Prepare approvals with its reasons</li>
+        <li data-i18n="ag.c5">Record payments and show you the numbers</li>
+      </ul>
+    </div>
+    <div class="cannot reveal">
+      <h3 data-i18n="ag.only">Only you can</h3>
+      <ul>
+        <li data-i18n="ag.o1">Change company, VAT and bank details</li>
+        <li data-i18n="ag.o5">Confirm the prices it found</li>
+        <li data-i18n="ag.o2">Approve trade accounts and big orders</li>
+        <li data-i18n="ag.o3">Issue credit notes</li>
+        <li data-i18n="ag.o4">Connect or disconnect agents</li>
+      </ul>
+    </div>
+    <div class="terminal reveal">
+      <div class="win-bar"><i></i><i></i><i></i><span>Terminal</span></div>
+      <pre><code><span class="c">$</span> claude mcp add --transport http moltenrock-trade https://b2b.shop.ch/mcp
+<span class="c">›</span> <span class="k">/mcp</span> → Authenticate → <span class="s">Allow</span>
+<span class="c">›</span> Set up my trade portal.
+<span class="ok">✓</span> get_setup_status → next: connect_shop
+<span class="ok">✓</span> import_catalog → 27 items · 4 languages
+<span class="ok">✓</span> bulk_set_translations → FR 15 · IT 15
+<span class="ok">✓</span> propose_partner_decision → waiting for you</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FREE / HOSTING ============================== -->
+<section class="free" id="free" aria-labelledby="free-title">
+  <div class="wrap">
+    <p class="eyebrow dark reveal" data-i18n="free.eyebrow">Pricing</p>
+    <h2 id="free-title" class="reveal" data-i18n="free.title">Free. Yours. In the EU.</h2>
+  </div>
+  <div class="wrap price-grid">
+    <article class="price-card main reveal spot">
+      <p class="tag" data-i18n="free.tag">Self-hosted</p>
+      <p class="amount">CHF 0 <small data-i18n="free.month">/ month</small></p>
+      <p class="muted" data-i18n="free.sub">On your own free Cloudflare account. We never see your data or your customers.</p>
+      <ul class="checks">
+        <li data-i18n="free.l1">Everything included — no feature gates</li>
+        <li data-i18n="free.l2">Data in Cloudflare’s EU jurisdiction</li>
+        <li data-i18n="free.l3">Sets itself up: no terminal, no config</li>
+        <li data-i18n="free.l4">Fair source (FSL) — becomes Apache 2.0 after two years</li>
+      </ul>
+      <a class="btn big magnetic" href="https://deploy.workers.cloudflare.com/?url=https://github.com/Goldcote/moltenrock-trade" rel="noopener"><span data-i18n="free.deploy">Deploy to Cloudflare</span></a>
+      <a class="guide-link" href="/start" data-i18n="free.guide">Step-by-step guide →</a>
+      <p class="fine" data-i18n="free.fine">About 10 minutes. Invoice PDFs need Workers Paid (USD 5 / month); the print-ready QR-bill page is free.</p>
+    </article>
+    <article class="price-card reveal spot">
+      <p class="tag" data-i18n="mac.tag">Optional · Mac only</p>
+      <h3 data-i18n="mac.title">MoltenRock for Mac</h3>
+      <p class="muted" data-i18n="mac.sub">Our Mac app, on the App Store. Optional: MoltenRock Trade works on any computer.</p>
+      <ul class="checks">
+        <li data-i18n="mac.l1">Keeps your business keys in a vault</li>
+        <li data-i18n="mac.l2">Approve what your AI agents do with Touch ID</li>
+        <li data-i18n="mac.l3">Your agent shows your portal live in MoltenView</li>
+      </ul>
+      <a class="btn ghost" href="https://moltenrock.com" rel="noopener" data-i18n="mac.cta">About MoltenRock</a>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== FAQ ============================== -->
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="wrap narrow">
+    <p class="eyebrow reveal" data-i18n="faq.eyebrow">FAQ</p>
+    <h2 id="faq-title" class="reveal" data-i18n="faq.title">Questions merchants ask</h2>
+    <div class="qa reveal"><details><summary data-i18n="faq.q1">Do I need a payment provider?</summary><div><p data-i18n="faq.a1">No. Trade customers pay by Swiss QR-bill, Net 14 by default. No card fees, no payment integration.</p></div></details></div>
+    <div class="qa reveal"><details><summary data-i18n="faq.q2">Can the agent break my shop?</summary><div><p data-i18n="faq.a2">No. It only ever reads your shop: with a read-only key on WooCommerce, or your public product pages on any other shop. It can’t touch your bank details, can’t make a price live, and can’t approve customers or large orders – those wait for you.</p></div></details></div>
+    <div class="qa reveal"><details><summary data-i18n="faq.q3">Where is my data?</summary><div><p data-i18n="faq.a3">In your own Cloudflare account, in Cloudflare’s EU jurisdiction. We never host it and never see it.</p></div></details></div>
+    <div class="qa reveal"><details><summary data-i18n="faq.q4">Do I need to code?</summary><div><p data-i18n="faq.a4">No. Click “Deploy to Cloudflare”, open your new address, sign up. The portal creates its own database and keys.</p></div></details></div>
+    <div class="qa reveal"><details><summary data-i18n="faq.q5">Which agents work?</summary><div><p data-i18n="faq.a5">Any agent that speaks MCP — for example Claude. Others can use the REST API; everything is described in llms.txt.</p></div></details></div>
+    <div class="qa reveal"><details><summary data-i18n="faq.q6">Which shop systems?</summary><div><p data-i18n="faq.a6">Any. WooCommerce connects directly with a read-only key, including Polylang and WPML translations. Shopify, Wix, Squarespace, your own website or a spreadsheet: your agent reads your products and their prices, and you confirm every price before anyone can order.</p></div></details></div>
+  </div>
+</section>
+
+<!-- ============================== FINAL CTA ============================== -->
+<section class="final" aria-labelledby="final-title">
+  <div class="final-glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 id="final-title" class="reveal"><span data-i18n="final.a">Open your trade portal</span> <em class="molten" data-i18n="final.b">tonight.</em></h2>
+    <p class="lead reveal" data-i18n="final.lead">Two steps are yours. Your agent does the rest.</p>
+    <a class="btn big magnetic reveal" href="/start"><span data-i18n="cta.start">Start free</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-grid">
+    <div><a class="brand" href="#top"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5 7.5 10v4l4.5 2.5 4.5-2.5v-4z" fill="currentColor"/></svg><span>MoltenRock Trade</span></a>
+      <p class="muted" data-i18n="foot.by">A Goldcote product. Built for Swiss B2B.</p></div>
+    <div class="foot-links"><a href="/start" data-i18n="nav.start">Get started</a><a href="#how" data-i18n="nav.how">How it works</a><a href="#anyshop" data-i18n="nav.any">Any shop</a><a href="#features" data-i18n="nav.features">Features</a><a href="#agents" data-i18n="nav.agents">For agents</a><a href="#faq" data-i18n="nav.faq">FAQ</a><a href="/imprint" data-i18n="foot.imprint">Legal notice</a><a href="/privacy" data-i18n="foot.privacy">Privacy</a></div>
+    <p class="fine" data-i18n="foot.fine">WooCommerce, Shopify, Wix, Squarespace, GitHub and Cloudflare are trademarks of their respective owners. MoltenRock Trade is not affiliated with any of them.</p>
+  </div>
+</footer>
+</body>
+</html>

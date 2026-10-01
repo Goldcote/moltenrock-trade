@@ -1,0 +1,33 @@
+name = "moltenrock-trade"
+main = "src/index.ts"
+compatibility_date = "2026-09-01"
+
+# Static assets (CSS, JS). Worker code handles every dynamic route.
+[assets]
+directory = "public"
+binding = "ASSETS"
+run_worker_first = true
+
+[vars]
+DEV = "0"   # local development sets DEV=1 via `npm run dev`; keep "0" in production
+
+# The database. No database_id on purpose: on deploy (including the "Deploy to Cloudflare" button)
+# wrangler connects to an existing database named "moltenrock-trade" in your account, or creates one.
+# For EU-only data: create "moltenrock-trade" first in the Cloudflare dashboard with the EU jurisdiction
+# (Storage & databases → D1 → Create), then deploy — it will be used automatically.
+# Tables are created by the app itself on first start (no migration command needed).
+[[d1_databases]]
+binding = "DB"
+database_name = "moltenrock-trade"
+migrations_dir = "migrations"
+
+# Lets the Worker read migrations/*.sql as text so it can set up its own database.
+[[rules]]
+type = "Text"
+globs = ["**/*.sql"]
+fallthrough = true
+
+# Confirms orders whose cancel window has passed (also done on each request). Uses 1 of the 5
+# cron triggers included in the free plan.
+[triggers]
+crons = ["* * * * *"]

@@ -1,0 +1,27 @@
+{
+  "name": "moltenrock-trade",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "MoltenRock Trade \u2014 agent-first Swiss B2B trade storefront (prototype)",
+  "scripts": {
+    "dev": "wrangler dev --local --port 8787 --var DEV:1",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "db:reset:local": "rm -rf .wrangler/state",
+    "smoke": "bash scripts/smoke.sh",
+    "deploy": "wrangler deploy",
+    "demo": "curl -s -X POST -H 'Origin: http://localhost:8787' http://localhost:8787/dev/demo && echo"
+  },
+  "dependencies": {
+    "pdf-lib": "1.17.1",
+    "qrcode-generator": "2.0.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20260929.1",
+    "typescript": "7.0.2",
+    "vitest": "5.0.2",
+    "wrangler": "4.143.0"
+  },
+  "license": "FSL-1.1-ALv2"
+}

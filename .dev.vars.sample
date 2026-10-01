@@ -1,0 +1,8 @@
+# Local development only (copy to .dev.vars, which is gitignored). All optional.
+# A READ-ONLY WooCommerce key, used by `npm run smoke` to import a real catalogue (GET requests only):
+WOO_URL=
+WOO_CONSUMER_KEY=
+WOO_CONSUMER_SECRET=
+# Optional email sending (otherwise emails appear in the dev mailbox at /dev/mail):
+RESEND_API_KEY=
+MAIL_FROM=

@@ -1,0 +1,3 @@
+# The "Deploy to Cloudflare" button asks for the values below. Everything else sets itself up.
+# Your email address: only this address can create the shop after deploying.
+OWNER_EMAIL=
