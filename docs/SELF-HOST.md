@@ -31,28 +31,60 @@ An AI agent is an AI assistant, like Claude, that can do more than chat: it can 
 3. Stay on the free plan.
 
 ### 3. Create your database in the EU (recommended)
-1. In Cloudflare, open **D1 SQL Database** (under *Storage & Databases*) and click **Create Database**.
-2. Name it exactly **`moltenrock-trade`**.
-3. *Data location*: **Specify jurisdiction → eu**. Then click **Create**.
+1. In Cloudflare, open **Storage & databases → D1 SQLite Database** and click **Create Database**.
+2. *Name*: exactly **`moltenrock-trade`**.
+3. *Data location*: choose **Specify jurisdiction**, open **Provide a jurisdiction** and pick **The European Union**. Then click **Create**.
 
-Do this **before step 4**: the data location can only be chosen when the database is created. If you skip it, Cloudflare creates the database for you, then without the EU setting.
+Not *Location* with a *location hint*: that only suggests a region. Only **Specify jurisdiction** keeps the data in the EU, and it can't be changed later. Do this **before step 4**: the Deploy page then picks this database by itself.
+
+![Storage & databases → D1 SQLite Database → Create Database](../site/assets/guide/eu-1-d1.webp)
+![Name, Specify jurisdiction, The European Union, Create](../site/assets/guide/eu-2-create.webp)
 
 ### 4. Click "Deploy to Cloudflare"
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/Goldcote/moltenrock-trade)
 
-1. Sign in to Cloudflare and connect your GitHub account when asked.
-2. If it asks for **`OWNER_EMAIL`**, enter your own email: only that address can set up the shop.
-3. Leave the names as they are (`moltenrock-trade`) and click **Create and deploy**. It takes about two minutes.
-4. At the end you get your address, like `https://moltenrock-trade.your-name.workers.dev`.
+1. Under *Git account*, click **New GitHub connection**.
+2. GitHub asks which repositories Cloudflare may use. A new GitHub account: leave **All repositories** (it will only hold this app). You already use GitHub: choose **Only select repositories** and pick any one. Click **Install & Authorize**; GitHub may ask for your two-factor code.
+3. Back in Cloudflare: tick **Create private Git repository**. *Project name*: keep `moltenrock-trade` or use your own, like `alpenrose-trade`.
+4. *Select D1 database* must say **`moltenrock-trade`**. If it says *+ Create new*, your EU database is missing: do step 3 first.
+5. **`OWNER_EMAIL`**: your own email address. Only this address can create the shop.
+6. Leave everything else as it is and click **Deploy**. After about two minutes the log says *Success*. Your address is the line under *Deployed … triggers*, ending in `.workers.dev`.
+
+![GitHub: which repositories Cloudflare may use](../site/assets/guide/deploy-1-github.webp)
+![Git account, private repository, project name](../site/assets/guide/deploy-2-form.webp)
+![The EU database is preselected; add your email](../site/assets/guide/deploy-3-db-email.webp)
+![Success: your address is under "Deployed … triggers"](../site/assets/guide/deploy-4-success.webp)
+
+**Something went differently?**
+- *"A repository with that name already exists"*: change the *Project name* and click **Deploy** again.
+- Your address only shows *Hello World*: a known Cloudflare hiccup ([workers-sdk#14553](https://github.com/cloudflare/workers-sdk/issues/14553)). Delete the Worker (*Settings → Delete*) and the new repository on GitHub, then deploy again.
+- You chose *Only select repositories*: on GitHub open *Settings → Applications → Cloudflare Workers and Pages → Configure* and check that your new repository is listed, so updates deploy automatically.
 
 ### 5. Open your address and sign up
-Enter your company, UID number and IBAN: that's what appears on your invoices. You're signed in straight away and land on **Setup**. Do this right after deploying.
+1. Open your address (the `.workers.dev` line from step 4). You land on **Set up your trade portal**.
+2. Fill in your company and address and your email (**the same one as `OWNER_EMAIL`**). UID and IBAN can wait: add the IBAN before your first order (Setup → *Company and bank details*); it's printed on every invoice, and trade customers can't order until it's there.
+3. Click **Create portal**. You're signed in straight away and land on **Setup**.
+
+Your agent can never change these details; only you can. Do this right after deploying.
+
+![Your portal's sign-up form](../site/assets/guide/signup-en.webp)
 
 ### 6. Connect your AI agent
 **Claude app (the free plan works):**
-1. Open **Customize → Connectors**, click **+** and then **Add custom connector**.
-2. Name: *MoltenRock Trade*. Address: your portal address followed by `/mcp`, e.g. `https://moltenrock-trade.your-name.workers.dev/mcp`.
-3. Click **Connect**, sign in to your portal and click **Allow**.
+1. Open the Claude app or claude.ai. In the left sidebar click **Customize**, then the **Connectors** tab, then **+ Add** (top right) → **Add custom connector**.
+2. *Name*: `MoltenRock Trade`. *MCP server URL*: your portal address followed by `/mcp`, e.g. `https://moltenrock-trade.your-name.workers.dev/mcp`. Click **Continue**.
+3. Leave the sign-in options as they are (*Sign in now*, *Register automatically*) and click **Add**.
+4. Click **Connect**. Your browser opens: log in to Claude if asked, then click **Allow** on your portal.
+5. In a chat: **+** (bottom left) → **Connectors** → switch on *MoltenRock Trade*.
+
+Claude sends you to your **default browser**: open your portal there first. Signed in somewhere else? In your portal use **Setup → Sign in on another browser** and open that link in the default browser (no email needed).
+
+![Customize → Connectors → + Add → Add custom connector](../site/assets/guide/claude-1-customize.webp)
+![Name and address, then Continue](../site/assets/guide/claude-2-add.webp)
+![Leave the sign-in options as detected, click Add](../site/assets/guide/claude-3-options.webp)
+![Connect, then Allow on your portal](../site/assets/guide/claude-4-connect.webp)
+
+*Agents that can't sign in themselves* (or if the sign-in won't work): in your portal open Setup → step 2 → *Another agent, or connect with an access key*, create a key, and send it as the header `X-API-Key` (in Claude: *No sign-in* → *Request headers* → *Add header*).
 
 **Claude Code (paid Claude plan):**
 ```bash
@@ -76,6 +108,13 @@ Set up my MoltenRock Trade portal. Start with get_setup_status and follow next_a
 Then, in your portal under **Setup → Before your first trade customer**, confirm the terms and privacy notice ([LEGAL.md](LEGAL.md)) and set up email.
 
 **Done.**
+
+### Optional: use your own address
+Your portal can run on your own domain, for example `b2b.yourshop.ch`. The domain has to be managed in Cloudflare (*Domains* in the Cloudflare menu).
+1. In Cloudflare open **Workers & Pages → your portal → Settings → Domains & Routes → Add → Custom domain**.
+2. Enter your address and click **Add domain**. Cloudflare sets up the certificate within a few minutes.
+
+Your `.workers.dev` address keeps working too.
 
 ## The quick way: let Claude Code deploy it for you
 
@@ -101,7 +140,7 @@ This way your copy lives on your computer instead of GitHub; [UPDATING.md](UPDAT
 |---|---|---|
 | **Your own address** (e.g. `b2b.yourshop.ch`) | Workers & Pages → `moltenrock-trade` → Settings → Domains & Routes → Add custom domain (your domain must be on Cloudflare) | free |
 | **Emails sent automatically** (sign-in links, order confirmations) | Create a free [Resend](https://resend.com) account and an API key, then in Workers & Pages → `moltenrock-trade` → Settings → Variables and Secrets add `RESEND_API_KEY` and `MAIL_FROM` (e.g. `Shop <b2b@yourshop.ch>`). Without email, you forward sign-in links yourself: **Approvals → Trade customers → Create sign-in link**. | free tier |
-| **One-click PDF invoices** | Invoices always work as a print-ready page ("Print / PDF" in the browser). The server-generated PDF download needs Cloudflare's **Workers Paid** plan, because making a PDF needs more computing time than the free plan allows. | USD 5 / month |
+| **One-click PDF invoices** | Invoices always work as a print-ready page ("Print / PDF" in the browser). The server-generated PDF download needs Cloudflare's **Workers Paid** plan, because making a PDF needs more computing time than the free plan allows. | USD 5 / month, billed by Cloudflare (not by us) |
 | **Stronger key separation** | By default the app keeps its own security keys in its database. To keep them outside it, add `SESSION_SECRET` (random text) and `ENCRYPTION_KEY` (32 random bytes, base64) as Worker secrets — then reconnect your shop once through your agent. | free |
 
 ## What the free plan covers

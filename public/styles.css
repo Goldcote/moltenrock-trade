@@ -450,3 +450,9 @@ article.legal p { color: var(--ink-2); max-width: 68ch; }
 .any-shop { display: flex; gap: 12px; align-items: flex-start; margin: 16px 0 0; padding: 14px 16px; border-radius: 14px; font-size: .92rem;
   background: linear-gradient(110deg, rgba(122, 140, 255, .10), transparent 70%), var(--card); border: 1px solid rgba(122, 140, 255, .3); color: var(--ink-2); }
 .any-shop .ic { width: 20px; height: 20px; flex: 0 0 20px; color: var(--open); margin-top: 1px; }
+/* IBAN still missing (Setup step 1) and "sign in on another browser" (Setup step 2) */
+.iban-missing { padding: 10px 14px; border-radius: 12px; background: var(--warn-soft); color: var(--warn); }
+.iban-missing a { font-weight: 650; color: inherit; }
+.other-browser { display: flex; align-items: center; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; margin: 14px 0 6px; padding: 12px 16px; border-radius: 12px; border: 1px dashed var(--line); }
+.other-browser p { margin: 0; font-size: .9rem; color: var(--ink-2); }
+.other-browser form { margin: 0; }

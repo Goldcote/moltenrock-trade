@@ -1,9 +1,9 @@
 {
   "name": "moltenrock-trade",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "type": "module",
-  "description": "MoltenRock Trade \u2014 agent-first Swiss B2B trade storefront (prototype)",
+  "description": "MoltenRock Trade — agent-first Swiss B2B trade storefront (prototype)",
   "scripts": {
     "dev": "wrangler dev --local --port 8787 --var DEV:1",
     "test": "vitest run",
@@ -23,5 +23,15 @@
     "vitest": "5.0.2",
     "wrangler": "4.143.0"
   },
-  "license": "FSL-1.1-ALv2"
+  "license": "FSL-1.1-ALv2",
+  "cloudflare": {
+    "bindings": {
+      "OWNER_EMAIL": {
+        "description": "**Your own email address.** Only this address can create the shop after deploying, so nobody else can claim it before you. Use the same email when you sign up."
+      },
+      "DB": {
+        "description": "Pick **moltenrock-trade**, the database you created in the EU. If it only offers *+ Create new*, create the EU database first (Storage & databases → D1 SQLite Database → Specify jurisdiction → The European Union)."
+      }
+    }
+  }
 }

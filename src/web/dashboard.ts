@@ -168,6 +168,7 @@ export async function dashboard(ctx: Ctx): Promise<Response> {
     ${!d.setup.complete ? html`<section class="setup-hero" data-spot>${ring(setupFrac, `${d.setup.done}/${d.setup.total}`, 'hero-ring')}
       <div><h2>${t('d.setup.title')}</h2><p>${t('d.setup.body', { done: d.setup.done, total: d.setup.total })}</p></div>
       <a class="btn" href="/merchant/setup">${t('d.setup.cta')} ${icon('arrow')}</a></section>` : ''}
+    ${!ctx.shop.iban ? html`<aside class="hint-strip warn">${icon('clock')}<p>${t('m.iban.missing')} <a href="/merchant/setup#business">${t('m.iban.add')} →</a></p></aside>` : ''}
     ${!emailConfigured(ctx.env) ? html`<aside class="hint-strip warn">${icon('clock')}<p>${t('d.emailOff')} <a href="/merchant/setup#email">${t('d.emailFix')} →</a></p></aside>` : ''}
     ${upd.available && upd.latest ? html`<aside class="hint-strip info">${icon('download')}<p>${t('d.update', { v: upd.latest.latest })} <a href="/status#software">${t('u.how')} →</a></p></aside>` : ''}
     ${await dashboardSections(ctx, d, { live: true })}

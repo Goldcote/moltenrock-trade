@@ -43,6 +43,8 @@ export async function setupStatus(env: Env, baseUrl: string) {
       hint: 'get_settings shows them; change any with update_settings; then confirm_defaults.' },
     { id: 'legal', who: 'human', done: settings.legal_confirmed, title: 'Terms and privacy notice confirmed by the owner (human-only)',
       hint: `Ask your human to review the terms and privacy notice under Setup → "Before your first trade customer" (${baseUrl}/merchant/setup#legal): built-in templates or links to their own pages.` },
+    { id: 'bank_account', who: 'human', done: !!shop?.iban, title: 'Bank account (IBAN) for invoices added by the owner (human-only)',
+      hint: `Ask your human to add the IBAN under Setup → Company and bank details (${baseUrl}/merchant/setup#business). Until then trade customers cannot order: every invoice carries a Swiss QR-bill with this account.` },
     { id: 'first_partner', who: 'agent', done: approvedPartners > 0, title: 'Invite the first trade customer', tool: 'invite_partner' },
     { id: 'email', who: 'human', optional: true, done: emailConfigured(env), title: 'Email sending set up (recommended, human-only)',
       hint: `Without email, trade customers cannot sign in by themselves. Your human sets it up once (Resend + two Cloudflare variables): ${baseUrl}/merchant/setup#email` },

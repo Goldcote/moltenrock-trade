@@ -13,9 +13,9 @@
 <meta name="theme-color" content="#0b0c0f">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2 3 7v10l9 5 9-5V7z' fill='none' stroke='%23ff5a1f' stroke-width='1.8'/%3E%3Cpath d='M12 7.5 7.5 10v4l4.5 2.5 4.5-2.5v-4z' fill='%23ff5a1f'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="stylesheet" href="/assets/site.css?v=0.3.0">
-<script src="/assets/start-i18n.js?v=0.3.0" defer></script>
-<script src="/assets/site.js?v=0.3.0" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=0.3.1">
+<script src="/assets/start-i18n.js?v=0.3.1" defer></script>
+<script src="/assets/site.js?v=0.3.1" defer></script>
 </head>
 <body class="subpage start">
 <div class="progress" aria-hidden="true"><span></span></div>
@@ -120,7 +120,7 @@
         <h2 data-i18n="st.ai">What’s an AI agent?</h2>
         <p data-i18n="st.aip">An AI agent is an AI assistant – like Claude – that can do more than chat: it can use tools. Here it connects to your trade portal and does the setup work for you: it reads your products, writes the texts in four languages and sets your prices and terms. You stay in charge: it asks you when it needs something, it can never change your bank details, and it never approves customers, large orders or prices itself.</p>
         <p class="ai-get"><span data-i18n="st.aiget">Don’t have one yet? Create a free account at claude.ai, or install the Claude app for Mac or Windows. That’s all you need.</span></p>
-        <p class="ai-links"><a class="btn small" href="https://claude.ai" rel="noopener">claude.ai<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a><a class="btn small ghost" href="https://claude.com/download" rel="noopener">claude.com/download</a></p>
+        <p class="ai-links"><a class="btn small" href="https://claude.ai" target="_blank" rel="noopener">claude.ai<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a><a class="btn small ghost" href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a></p>
       </div>
       <div class="ai-diagram" aria-hidden="true">
         <div class="ai-flow">
@@ -147,6 +147,7 @@
     <p class="eyebrow dark reveal" data-i18n="st.eyebrow2">Seven steps · about 15 minutes</p>
     <h2 id="steps-title" class="reveal" data-i18n="st.steps">Step by step</h2>
   </div>
+  <div class="wrap"><div class="fast-lane reveal"><p data-i18n="fl.q">Already have a Cloudflare and a GitHub account, and are signed in to both in this browser?</p><button class="btn small" type="button" data-fast-lane><span data-i18n="fl.go">Skip to step 3</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button></div></div>
   <div class="wrap steps-grid">
     <nav class="rail" aria-label="Steps">
       <div class="rail-line" aria-hidden="true"><span></span></div>
@@ -169,7 +170,7 @@
         <div class="gs-body">
           <div class="gs-text">
             <ol><li data-i18n="s1.a">Go to github.com/signup.</li><li data-i18n="s1.b">Enter your email, a password and a username, then confirm the code GitHub emails you.</li><li data-i18n="s1.c">The free plan is all you need.</li></ol>
-            <p class="why"><a href="https://github.com/signup" rel="noopener">github.com/signup ↗</a> · <span data-i18n="s1.why">Why: Cloudflare puts your own copy of MoltenRock Trade there, and updates arrive the same way.</span></p>
+            <p class="why"><a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup ↗</a> · <span data-i18n="s1.why">Why: Cloudflare puts your own copy of MoltenRock Trade there, and updates arrive the same way.</span></p>
           </div>
           <figure class="mock mock-form" aria-hidden="true">
             <div class="mock-bar"><i></i><i></i><i></i><span>github.com/signup</span></div>
@@ -191,7 +192,7 @@
         <div class="gs-body">
           <div class="gs-text">
             <ol><li data-i18n="s2.a">Go to dash.cloudflare.com/sign-up.</li><li data-i18n="s2.b">Enter your email and a password, then confirm the email Cloudflare sends you.</li><li data-i18n="s2.c">Stay on the free plan.</li></ol>
-            <p class="why"><a href="https://dash.cloudflare.com/sign-up" rel="noopener">dash.cloudflare.com/sign-up ↗</a></p>
+            <p class="why"><a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">dash.cloudflare.com/sign-up ↗</a></p>
           </div>
           <figure class="mock mock-form" aria-hidden="true">
             <div class="mock-bar"><i></i><i></i><i></i><span>dash.cloudflare.com/sign-up</span></div>
@@ -212,19 +213,17 @@
           <p class="gs-meta"><span class="t">≈ 1 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span><span class="free">EU</span></p></div></header>
         <div class="gs-body">
           <div class="gs-text">
-            <ol><li data-i18n="s3.a">In Cloudflare, open D1 SQL Database (under Storage &amp; Databases) and click Create Database.</li><li data-i18n="s3.b">Name it exactly moltenrock-trade.</li><li data-i18n="s3.c">Data location: Specify jurisdiction → eu. Then click Create.</li></ol>
-            <p class="note" data-i18n="s3.note">Do this before step 4: the data location can only be chosen when the database is created. If you skip it, Cloudflare creates the database for you – then without the EU setting.</p>
+            <ol class="steps-n">
+              <li><span data-i18n="s3.a">In Cloudflare, open Storage &amp; databases → D1 SQLite Database and click Create Database.</span> <button class="shot-link" type="button" data-shot="1" aria-label="Show screenshot 1">1</button></li>
+              <li><span data-i18n="s3.b">Name: moltenrock-trade – exactly like this.</span> <button class="shot-link" type="button" data-shot="2" aria-label="Show screenshot 2">2</button></li>
+              <li><span data-i18n="s3.c">Data location: choose Specify jurisdiction, open Provide a jurisdiction and pick The European Union. Then click Create.</span> <button class="shot-link" type="button" data-shot="2" aria-label="Show screenshot 2">2</button></li>
+            </ol>
+            <p class="note" data-i18n="s3.note">Not “Location” with a location hint – that only suggests a region. Only Specify jurisdiction keeps your data in the EU, and it can’t be changed later. Do this before step 4: the Deploy page then picks this database by itself.</p>
+            <p class="why"><a href="https://dash.cloudflare.com/?to=/:account/workers/d1" target="_blank" rel="noopener">dash.cloudflare.com ↗</a> · <span data-i18n="st.newTab">Opens in a new tab – keep this guide open.</span></p>
           </div>
-          <figure class="mock mock-db" aria-hidden="true">
-            <div class="mock-bar"><i></i><i></i><i></i><span>D1 SQL Database · Create</span></div>
-            <div class="mock-body">
-              <div class="field"><label>Database name</label><div class="input typed mono" data-type="moltenrock-trade"></div></div>
-              <div class="field"><label>Data location</label>
-                <div class="select"><span>Specify jurisdiction</span><b>▾</b></div>
-                <ul class="options"><li>Automatic</li><li class="pick"><span class="eu"><i></i><i></i><i></i><i></i><i></i></span>eu <small>European Union</small></li><li>fedramp</li></ul>
-              </div>
-              <div class="mock-cta">Create</div>
-            </div>
+          <figure class="shots" data-shots>
+            <div class="shots-view"><div class="shot" data-n="1"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/eu-1-d1.webp" width="1118" height="700" alt="" loading="lazy"><span class="pin p-eu1-a" aria-hidden="true">1</span><span class="pin p-eu1-b" aria-hidden="true">1</span></button><p class="shot-cap"><b>1</b> <span data-i18n="sh.eu1">Storage &amp; databases → D1 SQLite Database → Create Database</span></p></div><div class="shot" data-n="2"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/eu-2-create.webp" width="1118" height="760" alt="" loading="lazy"><span class="pin p-eu2-a" aria-hidden="true">2</span><span class="pin p-eu2-b" aria-hidden="true">2</span><span class="pin p-eu2-c" aria-hidden="true">2</span></button><p class="shot-cap"><b>2</b> <span data-i18n="sh.eu2">Name, Specify jurisdiction, The European Union, Create</span></p></div></div>
+            <div class="shots-nav"><button type="button" class="shots-prev" aria-label="Previous">‹</button><button type="button" class="shots-tab on" data-go="1" aria-label="Screenshot 1">1</button><button type="button" class="shots-tab" data-go="2" aria-label="Screenshot 2">2</button><button type="button" class="shots-next" aria-label="Next">›</button></div>
           </figure>
         </div>
         <footer class="gs-foot"><button class="done-btn" type="button" data-done="3" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
@@ -236,20 +235,23 @@
           <p class="gs-meta"><span class="t">≈ 3 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span><span class="free" data-i18n="st.free">Free</span></p></div></header>
         <div class="gs-body">
           <div class="gs-text">
-            <p><a class="btn magnetic deploy" href="https://deploy.workers.cloudflare.com/?url=https://github.com/Goldcote/moltenrock-trade" rel="noopener"><span data-i18n="st.cta">Deploy to Cloudflare</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
-            <ol><li data-i18n="s4.a">Sign in to Cloudflare and connect your GitHub account when asked.</li><li data-i18n="s4.owner">If it asks for OWNER_EMAIL, enter your own email: only that address can set up the shop.</li><li data-i18n="s4.b">Leave the names as they are (moltenrock-trade) and click Create and deploy. It takes about two minutes.</li><li data-i18n="s4.c">At the end you get your address, like https://moltenrock-trade.your-name.workers.dev.</li></ol>
+            <p class="deploy-row"><a class="btn magnetic deploy" href="https://deploy.workers.cloudflare.com/?url=https://github.com/Goldcote/moltenrock-trade" target="_blank" rel="noopener"><span data-i18n="st.cta">Deploy to Cloudflare</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a> <small data-i18n="st.newTab">Opens in a new tab – keep this guide open.</small></p>
+            <ol class="steps-n">
+              <li><span data-i18n="s4.a">Under Git account, click New GitHub connection.</span> <button class="shot-link" type="button" data-shot="1" aria-label="Show screenshot 1">1</button></li>
+              <li><span data-i18n="s4.b">GitHub asks which repositories Cloudflare may use. A new GitHub account: leave All repositories – it will only hold this app. You already use GitHub: choose Only select repositories and pick any one. Click Install &amp; Authorize; GitHub may ask for your two-factor code.</span> <button class="shot-link" type="button" data-shot="1" aria-label="Show screenshot 1">1</button></li>
+              <li><span data-i18n="s4.c">Back in Cloudflare: tick Create private Git repository. Project name: keep moltenrock-trade or use your own, like alpenrose-trade.</span> <button class="shot-link" type="button" data-shot="2" aria-label="Show screenshot 2">2</button></li>
+              <li><span data-i18n="s4.d">Select D1 database must say moltenrock-trade. If it says + Create new, your EU database is missing – do step 3 first.</span> <button class="shot-link" type="button" data-shot="3" aria-label="Show screenshot 3">3</button></li>
+              <li><span data-i18n="s4.owner">OWNER_EMAIL: your own email address. Only this address can create the shop.</span> <button class="shot-link" type="button" data-shot="3" aria-label="Show screenshot 3">3</button></li>
+              <li><span data-i18n="s4.e">Leave everything else as it is and click Deploy. After about two minutes the log says Success. Your address is the line under “Deployed … triggers”, ending in .workers.dev.</span> <button class="shot-link" type="button" data-shot="4" aria-label="Show screenshot 4">4</button></li>
+            </ol>
+            <details class="trouble"><summary data-i18n="s4.trouble">Something went differently?</summary>
+              <ul><li data-i18n="s4.t1">“A repository with that name already exists”: change the Project name and click Deploy again.</li>
+                <li data-i18n="s4.t2">Your address only shows “Hello World”: a known Cloudflare hiccup. Delete the Worker (Settings → Delete) and the new repository on GitHub, then deploy again.</li>
+                <li data-i18n="s4.t3">You chose Only select repositories: on GitHub open Settings → Applications → Cloudflare Workers and Pages → Configure and check that your new repository is listed, so updates deploy automatically.</li></ul></details>
           </div>
-          <figure class="mock mock-term" aria-hidden="true">
-            <div class="mock-bar dark"><i></i><i></i><i></i><span>Workers Builds · moltenrock-trade</span></div>
-            <div class="mock-body">
-              <p><b>›</b> Cloning your copy of moltenrock-trade</p>
-              <p><b>›</b> Installing · building</p>
-              <p><b>›</b> Database moltenrock-trade <em>eu</em></p>
-              <p><b>›</b> Uploading worker + assets</p>
-              <div class="build-bar"><span></span></div>
-              <p class="ok">✓ Success · deployed in 1m 48s</p>
-              <p class="url">https://moltenrock-trade.your-name.workers.dev</p>
-            </div>
+          <figure class="shots" data-shots>
+            <div class="shots-view"><div class="shot" data-n="1"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/deploy-1-github.webp" width="510" height="682" alt="" loading="lazy"><span class="pin p-gh-a" aria-hidden="true">1</span><span class="pin p-gh-b" aria-hidden="true">1</span></button><p class="shot-cap"><b>1</b> <span data-i18n="sh.gh">GitHub: which repositories Cloudflare may use</span></p></div><div class="shot" data-n="2"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/deploy-2-form.webp" width="586" height="432" alt="" loading="lazy"><span class="pin p-form-a" aria-hidden="true">2</span><span class="pin p-form-b" aria-hidden="true">2</span></button><p class="shot-cap"><b>2</b> <span data-i18n="sh.form">Git account, private repository, project name</span></p></div><div class="shot" data-n="3"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/deploy-3-db-email.webp" width="561" height="195" alt="" loading="lazy"><span class="pin p-db-a" aria-hidden="true">3</span><span class="pin p-db-b" aria-hidden="true">3</span></button><p class="shot-cap"><b>3</b> <span data-i18n="sh.dbmail">Your EU database is preselected – add your email</span></p></div><div class="shot" data-n="4"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/deploy-4-success.webp" width="855" height="284" alt="" loading="lazy"><span class="pin p-ok-a" aria-hidden="true">4</span><span class="pin p-ok-b" aria-hidden="true">4</span></button><p class="shot-cap"><b>4</b> <span data-i18n="sh.ok">Success – your address is under “Deployed … triggers”</span></p></div></div>
+            <div class="shots-nav"><button type="button" class="shots-prev" aria-label="Previous">‹</button><button type="button" class="shots-tab on" data-go="1" aria-label="Screenshot 1">1</button><button type="button" class="shots-tab" data-go="2" aria-label="Screenshot 2">2</button><button type="button" class="shots-tab" data-go="3" aria-label="Screenshot 3">3</button><button type="button" class="shots-tab" data-go="4" aria-label="Screenshot 4">4</button><button type="button" class="shots-next" aria-label="Next">›</button></div>
           </figure>
         </div>
         <footer class="gs-foot"><button class="done-btn" type="button" data-done="4" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
@@ -261,17 +263,16 @@
           <p class="gs-meta"><span class="t">≈ 2 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span><span class="free" data-i18n="st.humanOnly">Only a person</span></p></div></header>
         <div class="gs-body">
           <div class="gs-text">
-            <ol><li data-i18n="s5.a">Enter your company, UID number and IBAN – that’s what appears on your invoices. You’re signed in straight away.</li></ol>
+            <ol>
+              <li data-i18n="s5.a">Open your address – the .workers.dev line from step 4. You land on “Set up your trade portal”.</li>
+              <li data-i18n="s5.b">Fill in your company and address and your email – the same one as OWNER_EMAIL. UID and IBAN can wait: add the IBAN before your first order, it’s printed on every invoice.</li>
+              <li data-i18n="s5.c">Click Create portal. You’re signed in straight away.</li>
+            </ol>
             <p class="why" data-i18n="s5.why">Your agent can never change these details – only you can.</p>
           </div>
-          <figure class="mock mock-form" aria-hidden="true">
-            <div class="mock-bar"><i></i><i></i><i></i><span>moltenrock-trade.your-name.workers.dev</span></div>
-            <div class="mock-body">
-              <div class="field"><label data-i18n="how.m1a">Company</label><div class="input typed" data-type="Alpenrose Handels AG"></div></div>
-              <div class="field"><label>UID</label><div class="input typed" data-type="CHE-123.456.788"></div></div>
-              <div class="field"><label>IBAN</label><div class="input typed" data-type="CH93 0076 2011 6238 5295 7"></div></div>
-              <div class="mock-cta" data-i18n="how.m1b">Create portal</div>
-            </div>
+          <figure class="shots tall" data-shots>
+            <div class="shots-view"><div class="shot" data-n="1"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/signup-en.webp" width="1083" height="2049" alt="" loading="lazy" data-lang-src="/assets/guide/signup-{lang}.webp"></button><p class="shot-cap"><b>1</b> <span data-i18n="sh.signup">Your portal’s sign-up form</span></p></div></div>
+            
           </figure>
         </div>
         <footer class="gs-foot"><button class="done-btn" type="button" data-done="5" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
@@ -284,19 +285,20 @@
         <div class="gs-body wide">
           <div class="gs-text">
             <div class="two">
-              <div class="opt"><h4 data-i18n="s6.claude">Claude app – the free plan works</h4><ol><li data-i18n="s6.c1">Open Customize → Connectors, click + and then Add custom connector.</li><li><span data-i18n="s6.c2">Name: MoltenRock Trade. Address: your portal address followed by /mcp, for example:</span> <code>https://moltenrock-trade.your-name.workers.dev/mcp</code></li><li data-i18n="s6.c3">Click Connect, sign in to your portal and click Allow.</li></ol></div>
+              <div class="opt"><h4 data-i18n="s6.claude">Claude app – the free plan works</h4><ol class="steps-n">
+                <li><span data-i18n="s6.c1">Open the Claude app or claude.ai. In the left sidebar click Customize, then the Connectors tab, then + Add (top right) → Add custom connector.</span> <button class="shot-link" type="button" data-shot="1" aria-label="Show screenshot 1">1</button></li>
+                <li><span data-i18n="s6.c2">Name: MoltenRock Trade. MCP server URL: your portal address followed by /mcp, for example:</span> <code>https://moltenrock-trade.your-name.workers.dev/mcp</code> <span data-i18n="s6.c2b">Then Continue.</span> <button class="shot-link" type="button" data-shot="2" aria-label="Show screenshot 2">2</button></li>
+                <li><span data-i18n="s6.c3">Leave the sign-in options as they are (Sign in now, Register automatically) and click Add.</span> <button class="shot-link" type="button" data-shot="3" aria-label="Show screenshot 3">3</button></li>
+                <li><span data-i18n="s6.c4">Click Connect. Your browser opens: log in to Claude if asked, then click Allow on your portal.</span> <button class="shot-link" type="button" data-shot="4" aria-label="Show screenshot 4">4</button></li>
+                <li><span data-i18n="s6.c5">In a chat: + (bottom left) → Connectors → switch on MoltenRock Trade.</span></li></ol>
+                <p class="why" data-i18n="s6.tip">Claude sends you to your default browser – open your portal there first. Signed in somewhere else? In your portal use Setup → “Sign in on another browser”.</p></div>
               <div class="opt"><h4 data-i18n="s6.code">Claude Code – paid Claude plan</h4><ol><li><span data-i18n="s6.k1">Install it (Mac and Linux; Windows: see code.claude.com):</span><div class="copybox cmd"><pre id="cmd-install">curl -fsSL https://claude.ai/install.sh | bash</pre><button class="btn small copy" type="button" data-copy="cmd-install" data-i18n="copy">Copy</button></div></li>
                 <li><span data-i18n="s6.k2">Connect it to your portal:</span><div class="copybox cmd"><pre id="cmd-connect">claude mcp add --transport http moltenrock-trade https://moltenrock-trade.your-name.workers.dev/mcp</pre><button class="btn small copy" type="button" data-copy="cmd-connect" data-i18n="copy">Copy</button></div></li><li data-i18n="s6.k3">Then type /mcp in Claude Code, choose moltenrock-trade and Authenticate, and click Allow in your portal.</li></ol></div>
             </div>
           </div>
-          <figure class="mock mock-connect" aria-hidden="true">
-            <div class="mock-bar"><i></i><i></i><i></i><span>Claude · Connectors</span></div>
-            <div class="mock-body">
-              <p class="mock-h" data-i18n="how.m2">Add custom connector</p>
-              <div class="field"><label data-i18n="how.m2a">Name</label><div class="input">MoltenRock Trade</div></div>
-              <div class="field"><label data-i18n="how.m2b">Address</label><div class="input typed url" data-type="https://moltenrock-trade.your-name.workers.dev/mcp"></div></div>
-              <div class="consent"><p><b data-i18n="how.m2c">Connect Claude</b></p><p class="muted" data-i18n="how.m2d">Set up and run the portal · never your bank details</p><div class="mock-cta pulse" data-i18n="how.m2e">Allow</div></div>
-            </div>
+          <figure class="shots" data-shots>
+            <div class="shots-view"><div class="shot" data-n="1"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/claude-1-customize.webp" width="1412" height="490" alt="" loading="lazy"><span class="pin sm p-cl1-a" aria-hidden="true">1</span><span class="pin sm p-cl1-b" aria-hidden="true">1</span><span class="pin sm p-cl1-c" aria-hidden="true">1</span></button><p class="shot-cap"><b>1</b> <span data-i18n="sh.cl1">Customize → Connectors → + Add → Add custom connector</span></p></div><div class="shot" data-n="2"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/claude-2-add.webp" width="850" height="716" alt="" loading="lazy"><span class="pin p-cl2-a" aria-hidden="true">2</span><span class="pin p-cl2-b" aria-hidden="true">2</span><span class="pin p-cl2-c" aria-hidden="true">2</span></button><p class="shot-cap"><b>2</b> <span data-i18n="sh.cl2">Name and address, then Continue</span></p></div><div class="shot" data-n="3"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/claude-3-options.webp" width="850" height="862" alt="" loading="lazy"><span class="pin p-cl3-a" aria-hidden="true">3</span><span class="pin p-cl3-b" aria-hidden="true">3</span><span class="pin p-cl3-c" aria-hidden="true">3</span></button><p class="shot-cap"><b>3</b> <span data-i18n="sh.cl3">Leave the sign-in options as detected – click Add</span></p></div><div class="shot" data-n="4"><button class="shot-img" type="button" data-zoom aria-label="Enlarge"><img src="/assets/guide/claude-4-connect.webp" width="1032" height="380" alt="" loading="lazy"><span class="pin p-cl4-a" aria-hidden="true">4</span></button><p class="shot-cap"><b>4</b> <span data-i18n="sh.cl4">Connect – then Allow on your portal</span></p></div></div>
+            <div class="shots-nav"><button type="button" class="shots-prev" aria-label="Previous">‹</button><button type="button" class="shots-tab on" data-go="1" aria-label="Screenshot 1">1</button><button type="button" class="shots-tab" data-go="2" aria-label="Screenshot 2">2</button><button type="button" class="shots-tab" data-go="3" aria-label="Screenshot 3">3</button><button type="button" class="shots-tab" data-go="4" aria-label="Screenshot 4">4</button><button type="button" class="shots-next" aria-label="Next">›</button></div>
           </figure>
         </div>
         <footer class="gs-foot"><button class="done-btn" type="button" data-done="6" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
@@ -329,6 +331,17 @@
           </figure>
         </div>
         <footer class="gs-foot"><button class="done-btn" type="button" data-done="7" aria-pressed="false"><span class="box" aria-hidden="true"></span><span class="off" data-i18n="st.mark">Mark as done</span><span class="on" data-i18n="st.marked">Done</span></button></footer>
+      </li>
+      <!-- optional · own domain -->
+      <li class="gstep optional" id="own-domain">
+        <header class="gs-head"><span class="gs-n">+</span><div><h3 data-i18n="dom.h">Use your own address (optional)</h3>
+          <p class="gs-meta"><span class="t">≈ 5 <span data-i18n="st.min">min</span></span><span class="who" data-i18n="st.you">You</span></p></div></header>
+        <div class="gs-text">
+          <p data-i18n="dom.p">Your portal can run on your own domain, for example b2b.yourshop.ch. The domain has to be managed in Cloudflare (Domains in the Cloudflare menu).</p>
+          <ol><li data-i18n="dom.a">In Cloudflare open Workers &amp; Pages → your portal → Settings → Domains &amp; Routes → Add → Custom domain.</li>
+            <li data-i18n="dom.b">Enter your address, for example b2b.yourshop.ch, and click Add domain. Cloudflare sets up the certificate within a few minutes.</li></ol>
+          <p class="why" data-i18n="dom.why">Your .workers.dev address keeps working too.</p>
+        </div>
       </li>
     </ol>
   </div>
@@ -374,7 +387,7 @@
 Never ask me for passwords or keys in this chat.</pre><button class="btn small copy" type="button" data-copy="prompt-deploy" data-i18n="copy">Copy</button></div>
     </div>
   </div>
-  <div class="wrap"><p class="fine cost reveal" data-i18n="st.cost">Cost: CHF 0 on the free plans. Optional: one-click invoice PDFs need Workers Paid (USD 5 a month); the print-ready QR-bill page is free.</p></div>
+  <div class="wrap"><p class="fine cost reveal" data-i18n="st.cost">Cost: CHF 0 on the free plans. Optional: Cloudflare’s Workers Paid plan (USD 5 a month, billed by Cloudflare, not by us) adds one-click PDF invoices. The print-ready QR-bill page works on the free plan.</p></div>
 </section>
 </main>
 

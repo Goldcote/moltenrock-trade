@@ -35,7 +35,7 @@ export function vatNumberLabel(uid: string, lang: 'de' | 'fr' | 'it' | 'en'): st
 
 // ---- IBAN -------------------------------------------------------------------------------------
 
-export const compactIban = (iban: string): string => iban.replace(/\s+/g, '').toUpperCase();
+export const compactIban = (iban: string): string => iban.replace(/[\s-]+/g, '').toUpperCase();
 export const formatIban = (iban: string): string => compactIban(iban).replace(/(.{4})/g, '$1 ').trim();
 
 /** Convert letters to numbers (A=10 … Z=35) and compute mod 97 over the long digit string. */

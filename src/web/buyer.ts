@@ -8,7 +8,8 @@ import { unitNetRappen, vatRateFor } from '../money/pricing';
 import { assertCsrf, assertSameOrigin, clearSessionCookie, consumeMagicLink, createMagicLink, createSession, destroySession, lookupLogin, rateLimit } from '../domain/auth';
 import { cartItems, partnerTier, priceItems, setCartQty, vatRates } from '../domain/cart';
 import { listProducts, resolveText } from '../domain/catalog';
-import { sendEmail } from '../domain/db';
+import { emailConfigured, sendEmail } from '../domain/db';
+import { isDev } from '../lib/env';
 import { displayNumber, invoiceDocument, invoicePdf, getInvoice, listInvoices } from '../domain/invoices';
 import { renderInvoiceHtml } from '../invoice/html';
 import { cancelOrder, getOrderByRef, listOrders, orderLines, placeOrder, reorder } from '../domain/orders';
@@ -97,12 +98,15 @@ export async function applyPost(ctx: Ctx): Promise<Response> {
 
 // ---- Sign-in (magic links) ------------------------------------------------------------------
 
+const noEmail = (ctx: Ctx) => !emailConfigured(ctx.env) && !isDev(ctx.env);
+const noEmailText = (ctx: Ctx) => ctx.t('login.noEmail', { setup: ctx.t('m.nav.home'), button: ctx.t('m.signin.otherBtn') });
+
 export function loginGet(ctx: Ctx, error?: string): Response {
   const { t } = ctx;
   const next = safeNext(ctx.url.searchParams.get('next'), '');
   return htmlResponse(page(ctx, {
     title: t('login.title'), area: 'public', narrow: true,
-    body: html`<section class="card"><h1>${t('login.title')}</h1><p>${t('login.lead')}</p>${error ? notice('err', error) : ''}
+    body: html`<section class="card"><h1>${t('login.title')}</h1><p>${t('login.lead')}</p>${error ? notice('err', error) : ''}${noEmail(ctx) ? notice('info', noEmailText(ctx)) : ''}
       <form method="post" action="/login${next ? `?next=${encodeURIComponent(next)}` : ''}"><label for="email">${t('field.email')}</label><input id="email" name="email" type="email" required autocomplete="email">
       <div class="actions"><button type="submit">${t('login.submit')}</button></div></form></section>`,
   }));
@@ -123,7 +127,8 @@ export async function loginPost(ctx: Ctx): Promise<Response> {
     const shopName = ctx.shop?.legal_name ?? 'MoltenRock Trade';
     await sendEmail(ctx.env, email, ctx.t('email.login.subject', { shop: shopName }), ctx.t('email.login.body', { link }));
   }
-  const m = messagePage(ctx, ctx.t('login.sent.title'), ctx.t('login.sent.body'));
+  // Without an email provider no link arrives: say so instead of "check your inbox".
+  const m = noEmail(ctx) ? messagePage(ctx, ctx.t('login.noEmail.title'), noEmailText(ctx)) : messagePage(ctx, ctx.t('login.sent.title'), ctx.t('login.sent.body'));
   return htmlResponse(m.body);
 }
 
@@ -267,7 +272,7 @@ export async function cartGet(ctx: Ctx, error?: string): Promise<Response> {
   if (!priced.lines.length) return htmlResponse(page(ctx, { title: t('cart.title'), body: html`<h1>${t('cart.title')}</h1>${error ? notice('err', error) : ''}<p>${t('cart.empty')}</p><a class="btn" href="/catalog">${t('nav.catalog')}</a>` }));
   return htmlResponse(page(ctx, {
     title: t('cart.title'),
-    body: html`<h1>${t('cart.title')}</h1>${error ? notice('err', error) : ''}
+    body: html`<h1>${t('cart.title')}</h1>${error ? notice('err', error) : ''}${!ctx.shop?.iban ? notice('warn', t('err.shopNotReady')) : ''}
     ${priced.problems.length ? notice('warn', priced.problems.map((p) => `#${p.product_id}: ${p.reason}`).join(' · ')) : ''}
     <div class="split">
       <form class="card" method="post" action="/cart/update">${csrfField(ctx)}
@@ -306,7 +311,7 @@ export async function checkoutPost(ctx: Ctx): Promise<Response> {
     const order = await placeOrder(ctx.env, g.actor, priceCtx(ctx, g.partner), f, ctx.baseUrl);
     return redirect(`/orders/${order.ref}?placed=1`);
   } catch (e) {
-    if (e instanceof AppError) return cartGet(ctx, e.code === 'MIN_ORDER' ? ctx.t('err.minOrder') : e.message);
+    if (e instanceof AppError) return cartGet(ctx, e.code === 'MIN_ORDER' ? ctx.t('err.minOrder') : e.code === 'SHOP_NOT_READY' ? ctx.t('err.shopNotReady') : e.message);
     throw e;
   }
 }

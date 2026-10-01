@@ -1,15 +1,16 @@
 name = "moltenrock-trade"
 main = "src/index.ts"
 compatibility_date = "2026-09-01"
+# Your portal's own address (<name>.<you>.workers.dev). Preview URLs stay off: previews would share
+# your live database. Development mode is switched on only locally, by `npm run dev`.
+workers_dev = true
+preview_urls = false
 
 # Static assets (CSS, JS). Worker code handles every dynamic route.
 [assets]
 directory = "public"
 binding = "ASSETS"
 run_worker_first = true
-
-[vars]
-DEV = "0"   # local development sets DEV=1 via `npm run dev`; keep "0" in production
 
 # The database. No database_id on purpose: on deploy (including the "Deploy to Cloudflare" button)
 # wrangler connects to an existing database named "moltenrock-trade" in your account, or creates one.

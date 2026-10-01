@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.1 — a guide that matches the real screens
+
+From the first live install on a fresh Cloudflare account:
+- **Get started** now shows real screenshots of every Cloudflare and GitHub screen (personal details blurred), with numbered markers that match the instructions. Click a number in the text to see that screen, click a screenshot to enlarge it. The sign-up screenshot shows the visitor's language.
+- Corrected steps: *D1 SQLite Database*, **Specify jurisdiction → The European Union** (not the location hint), which repositories to allow on GitHub, the database the Deploy page must show, `OWNER_EMAIL`, and where the new address appears. Sign-up now says to use the same email as `OWNER_EMAIL`.
+- Every outside link opens in a new tab, so the guide stays open. New: a fast lane for people who already have both accounts, a *Something went differently?* box, and an optional *Use your own address* step.
+- Clearer cost: Cloudflare's optional Workers Paid plan (USD 5 a month) is billed by Cloudflare, not by us.
+- Deploy page: `OWNER_EMAIL` and the database now come with a short explanation; the internal `DEV` switch is no longer shown. Preview URLs are off, because previews would share the live database.
+- **IBAN can wait.** Sign-up only asks for the company and address; the IBAN can follow. Until it's set the portal takes no orders (so no invoice ever goes out without a QR-bill): Setup, the dashboard and the agent's checklist (`bank_account`) say so, trade customers see "not taking orders yet". Once set it can be changed but not removed. Spaces and dashes in an IBAN are fine; the error now explains it must be a Swiss or Liechtenstein account.
+- **Sign in on another browser – without email.** Setup has a one-time sign-in link (15 minutes, single use) to open in another browser, e.g. the one Claude sends you to when connecting. When the portal can't send email, the sign-in page says so instead of "check your inbox".
+- **Agent keys as `X-API-Key`** too (some apps, like Claude's custom connectors, keep the `Authorization` header for their own sign-in).
+- **Connecting Claude, step by step:** the exact clicks (Customize → Connectors → + Add → Add custom connector → Continue → Add → Connect → Allow), in the portal's Setup and with real screenshots in the guide.
+
 ## 0.3.0 — any shop
 
 - **Any shop, not only WooCommerce.** Shopify, Wix, Squarespace, a custom website, a spreadsheet or a product feed: the agent reads the products itself and adds them with the new `upsert_products` tool (up to 100 per call, with the page each price came from). WooCommerce still connects directly with a read-only key.

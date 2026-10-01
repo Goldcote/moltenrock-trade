@@ -24,9 +24,9 @@ res() { py "json.dumps(d['result']['structuredContent'])"; }
 echo "== Fresh database: the app sets itself up (tables + secrets) on first request =="
 check "landing redirects to sign-up on an empty install" "[ \"\$(curl -s -o /dev/null -w '%{redirect_url}' $B/)\" = '$B/merchant/signup' ]"
 
-echo "== Merchant sign-up (human-only identity + IBAN) → signed in immediately =="
+echo "== Merchant sign-up (human-only identity; IBAN can follow later) → signed in immediately =="
 loc=$(post -c "$W/owner.jar" -o /dev/null -w '%{redirect_url}' -X POST "$B/merchant/signup" --data-urlencode "legal_name=Alpenrose Handels AG" --data-urlencode "street=Musterstrasse" -d house_no=1 -d postcode=8001 \
-  --data-urlencode "city=Zürich" -d email=owner@example.test --data-urlencode "uid=CHE-123.456.788" -d vat_registered=1 --data-urlencode "iban=CH93 0076 2011 6238 5295 7" -d default_lang=de)
+  --data-urlencode "city=Zürich" -d email=owner@example.test --data-urlencode "uid=CHE-123.456.788" -d vat_registered=1 -d default_lang=de)
 check "owner signed in straight after sign-up, lands on setup (no email; Safari-safe local cookie)" "[ '$loc' = '$B/merchant/setup' ] && has_session '$W/owner.jar'"
 post -o /dev/null -X POST "$B/login" -d email=owner@example.test
 T=$(last_link); T=${T#*t=}
@@ -56,6 +56,21 @@ e=$(tool "$RT" invite_partner '{"company":"X","contact_name":"Y","email":"x@exam
 check "read token cannot invite (INSUFFICIENT_SCOPE)" "[ '$e' = 'INSUFFICIENT_SCOPE' ]"
 e=$(tool "$AT" update_settings '{"iban":"CH44 3199 9123 0008 8901 2"}' | py "d['result']['structuredContent']['error']['code']")
 check "agent cannot touch bank details (HUMAN_ONLY)" "[ '$e' = 'HUMAN_ONLY' ]"
+bk=$(tool "$AT" get_setup_status '{}' | py "[s['done'] for s in d['result']['structuredContent']['steps'] if s['id']=='bank_account'][0]")
+check "without an IBAN the bank step is open (the shop takes no orders yet)" "[ '$bk' = False ]"
+curl -s -b "$W/owner.jar" -o "$W/b0.html" "$B/merchant/setup"; BC=$(csrf_of "$W/b0.html")
+check "Setup asks for the IBAN" "grep -q 'class=\"iban-missing\"' '$W/b0.html'"
+post -b "$W/owner.jar" -o "$W/bad.html" -X POST "$B/merchant/business" -d "_csrf=$BC" --data-urlencode "legal_name=Alpenrose Handels AG" --data-urlencode "street=Musterstrasse" -d house_no=1 -d postcode=8001 --data-urlencode "city=Zürich" -d email=owner@example.test --data-urlencode "uid=CHE-123.456.788" -d vat_registered=1 --data-urlencode "iban=DE89 3704 0044 0532 0130 00"
+check "a non-Swiss IBAN is refused with a clear message" "grep -q 'Liechtensteiner' '$W/bad.html'"
+post -b "$W/owner.jar" -o /dev/null -X POST "$B/merchant/business" -d "_csrf=$BC" --data-urlencode "legal_name=Alpenrose Handels AG" --data-urlencode "street=Musterstrasse" -d house_no=1 -d postcode=8001 --data-urlencode "city=Zürich" -d email=owner@example.test --data-urlencode "uid=CHE-123.456.788" -d vat_registered=1 --data-urlencode "iban=CH93-0076-2011-6238-5295-7"
+bk=$(tool "$AT" get_setup_status '{}' | py "[s['done'] for s in d['result']['structuredContent']['steps'] if s['id']=='bank_account'][0]")
+check "the owner adds the IBAN later (dashes are fine)" "[ '$bk' = True ]"
+post -b "$W/owner.jar" -o "$W/sl.html" -X POST "$B/merchant/signin-link" -d "_csrf=$BC"
+SL=$(grep -oE "$B/auth/verify\?t=[A-Za-z0-9_-]+" "$W/sl.html" | head -1)
+post -c "$W/owner3.jar" -o /dev/null -X POST "$B/auth/verify" -d "t=${SL#*t=}"
+check "sign-in link for another browser works without email" "[ -n '$SL' ] && has_session '$W/owner3.jar'"
+xk=$(curl -s -X POST "$B/mcp" -H "X-API-Key: $AT" -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | py "len(d['result']['tools'])")
+check "agents can send their key as X-API-Key ($xk tools)" "[ '$xk' -ge 25 ]"
 
 if [ -f .dev.vars ] && grep -q '^WOO_CONSUMER_KEY=.' .dev.vars; then
   set -a; . ./.dev.vars; set +a

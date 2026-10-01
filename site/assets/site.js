@@ -5,6 +5,7 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
   const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch { /* private mode */ } } };
 
   /* ---------------------------------------------------------------- i18n */
@@ -35,7 +36,7 @@
       'ag.only': 'Nur Sie können', 'ag.o1': 'Firmen-, MWST- und Bankdaten ändern', 'ag.o2': 'Handelskonten und grosse Bestellungen freigeben', 'ag.o3': 'Gutschriften ausstellen', 'ag.o4': 'Agenten verbinden oder trennen',
       'free.eyebrow': 'Preis', 'free.title': 'Kostenlos. Ihres. In der EU.', 'free.tag': 'Selbst betrieben', 'free.month': '/ Monat', 'free.sub': 'In Ihrem eigenen kostenlosen Cloudflare-Konto. Wir sehen weder Ihre Daten noch Ihre Kunden.',
       'free.l1': 'Alles inklusive – keine Funktionen hinter Bezahlschranken', 'free.l2': 'Daten in der EU-Jurisdiktion von Cloudflare', 'free.l3': 'Richtet sich selbst ein: kein Terminal, keine Konfiguration', 'free.l4': 'Fair Source (FSL) – wird nach zwei Jahren Apache 2.0',
-      'free.deploy': 'Auf Cloudflare installieren', 'free.fine': 'Rund 10 Minuten. Rechnungs-PDFs brauchen Workers Paid (USD 5 / Monat); die druckfertige QR-Rechnungsseite ist kostenlos.',
+      'free.deploy': 'Auf Cloudflare installieren', 'free.fine': 'Rund 15 Minuten. Optional: Der Plan «Workers Paid» von Cloudflare (USD 5 / Monat, abgerechnet von Cloudflare – nicht von uns) ergänzt Rechnungs-PDFs per Klick; die druckfertige QR-Rechnungsseite ist kostenlos.',
       'mac.tag': 'Optional · nur Mac', 'mac.title': 'MoltenRock für Mac', 'mac.sub': 'Unsere Mac-App im App Store. Optional: MoltenRock Trade läuft auf jedem Computer.', 'mac.l1': 'Bewahrt Ihre Geschäftsschlüssel in einem Tresor auf', 'mac.l2': 'Freigeben, was Ihre KI-Agenten tun – mit Touch ID', 'mac.l3': 'Ihr Agent zeigt Ihr Portal live in MoltenView', 'mac.cta': 'Über MoltenRock',
       'faq.eyebrow': 'FAQ', 'faq.title': 'Was Händler fragen', 'faq.q1': 'Brauche ich einen Zahlungsanbieter?', 'faq.a1': 'Nein. Geschäftskunden zahlen per Schweizer QR-Rechnung, standardmässig 14 Tage netto. Keine Kartengebühren, keine Zahlungsintegration.',
       'faq.q2': 'Kann der Agent meinen Shop kaputt machen?', 'faq.a2': 'Nein. Er liest Ihren Shop nur: bei WooCommerce mit einem Lese-Schlüssel, bei jedem anderen Shop über Ihre öffentlichen Produktseiten. Ihre Bankdaten kann er nicht ändern, Preise nicht selbst freischalten, und Kunden oder grosse Bestellungen gibt er nicht frei – die warten auf Sie.',
@@ -73,7 +74,7 @@
       'ag.only': 'Vous seul pouvez', 'ag.o1': 'Modifier les données de l’entreprise, de TVA et bancaires', 'ag.o2': 'Valider les comptes et les grosses commandes', 'ag.o3': 'Émettre des notes de crédit', 'ag.o4': 'Connecter ou déconnecter des agents',
       'free.eyebrow': 'Prix', 'free.title': 'Gratuit. À vous. Dans l’UE.', 'free.tag': 'Auto-hébergé', 'free.month': '/ mois', 'free.sub': 'Sur votre propre compte Cloudflare gratuit. Nous ne voyons ni vos données ni vos clients.',
       'free.l1': 'Tout inclus – aucune fonction payante', 'free.l2': 'Données dans la juridiction UE de Cloudflare', 'free.l3': 'Se configure seul : ni terminal, ni configuration', 'free.l4': 'Fair source (FSL) – devient Apache 2.0 après deux ans',
-      'free.deploy': 'Déployer sur Cloudflare', 'free.fine': 'Environ 10 minutes. Les PDF de factures nécessitent Workers Paid (USD 5 / mois) ; la page de facture QR prête à imprimer est gratuite.',
+      'free.deploy': 'Déployer sur Cloudflare', 'free.fine': 'Environ 15 minutes. En option : l’offre « Workers Paid » de Cloudflare (USD 5 / mois, facturée par Cloudflare – pas par nous) ajoute les PDF de facture en un clic ; la page de facture QR prête à imprimer est gratuite.',
       'mac.tag': 'Optionnel · Mac uniquement', 'mac.title': 'MoltenRock pour Mac', 'mac.sub': 'Notre app Mac, sur l’App Store. Optionnel : MoltenRock Trade fonctionne sur n’importe quel ordinateur.', 'mac.l1': 'Garde vos clés d’entreprise dans un coffre', 'mac.l2': 'Validez avec Touch ID ce que font vos agents IA', 'mac.l3': 'Votre agent affiche votre portail en direct dans MoltenView', 'mac.cta': 'À propos de MoltenRock',
       'faq.eyebrow': 'FAQ', 'faq.title': 'Les questions des commerçants', 'faq.q1': 'Ai-je besoin d’un prestataire de paiement ?', 'faq.a1': 'Non. Les clients professionnels paient par facture QR suisse, 14 jours net par défaut. Pas de frais de carte, pas d’intégration de paiement.',
       'faq.q2': 'L’agent peut-il casser ma boutique ?', 'faq.a2': 'Non. Il ne fait que lire votre boutique : avec une clé en lecture seule sur WooCommerce, ou vos pages produits publiques pour toute autre boutique. Il ne peut pas toucher à vos données bancaires, ni rendre un prix actif, ni valider des clients ou de grosses commandes – ils vous attendent.',
@@ -111,7 +112,7 @@
       'ag.only': 'Solo lei può', 'ag.o1': 'Modificare dati aziendali, IVA e bancari', 'ag.o2': 'Approvare conti e ordini importanti', 'ag.o3': 'Emettere note di credito', 'ag.o4': 'Collegare o scollegare agenti',
       'free.eyebrow': 'Prezzo', 'free.title': 'Gratuito. Suo. Nell’UE.', 'free.tag': 'Self-hosted', 'free.month': '/ mese', 'free.sub': 'Sul suo account Cloudflare gratuito. Non vediamo né i suoi dati né i suoi clienti.',
       'free.l1': 'Tutto incluso – nessuna funzione a pagamento', 'free.l2': 'Dati nella giurisdizione UE di Cloudflare', 'free.l3': 'Si configura da solo: niente terminale, niente configurazione', 'free.l4': 'Fair source (FSL) – diventa Apache 2.0 dopo due anni',
-      'free.deploy': 'Installa su Cloudflare', 'free.fine': 'Circa 10 minuti. I PDF delle fatture richiedono Workers Paid (USD 5 / mese); la pagina della fattura QR pronta da stampare è gratuita.',
+      'free.deploy': 'Installa su Cloudflare', 'free.fine': 'Circa 15 minuti. Facoltativo: il piano «Workers Paid» di Cloudflare (USD 5 / mese, fatturato da Cloudflare – non da noi) aggiunge i PDF delle fatture con un clic; la pagina della fattura QR pronta da stampare è gratuita.',
       'mac.tag': 'Facoltativo · solo Mac', 'mac.title': 'MoltenRock per Mac', 'mac.sub': 'La nostra app per Mac, sull’App Store. Facoltativa: MoltenRock Trade funziona su qualsiasi computer.', 'mac.l1': 'Custodisce le chiavi aziendali in una cassaforte', 'mac.l2': 'Approvi con Touch ID ciò che fanno i suoi agenti IA', 'mac.l3': 'Il suo agente mostra il portale in tempo reale in MoltenView', 'mac.cta': 'Informazioni su MoltenRock',
       'faq.eyebrow': 'FAQ', 'faq.title': 'Le domande dei commercianti', 'faq.q1': 'Mi serve un fornitore di pagamento?', 'faq.a1': 'No. I clienti commerciali pagano con fattura QR svizzera, 14 giorni netto di default. Nessuna commissione sulle carte, nessuna integrazione di pagamento.',
       'faq.q2': 'L’agente può rompere il mio negozio?', 'faq.a2': 'No. Legge soltanto il suo negozio: con una chiave di sola lettura su WooCommerce, o dalle pagine prodotto pubbliche per qualsiasi altro negozio. Non può toccare i dati bancari, né attivare un prezzo, né approvare clienti od ordini importanti – attendono lei.',
@@ -467,6 +468,12 @@
       paint();
     });
     onLang.push(paint);
+    // "Already have both accounts?" ticks steps 1 and 2 and jumps to the database step.
+    const fast = $('[data-fast-lane]');
+    if (fast) fast.addEventListener('click', () => {
+      done.add(1); done.add(2); store.set(KEY, JSON.stringify([...done].sort((x, y) => x - y))); paint();
+      const s3 = $('#step-3'); if (s3) s3.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' });
+    });
 
     // The step in the middle of the screen lights up in the rail; the rail line fills to it.
     const rail = $('.rail'), railLinks = $$('.rail [data-step-link]');
@@ -495,6 +502,52 @@
     const mockIO = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { mockIO.unobserve(e.target); playMock(e.target); } }), { threshold: 0.45 });
     $$('.mock').forEach((m) => mockIO.observe(m));
   }
+
+  /* ---------------------------------------------------------------- real screenshots: one at a time, chips jump, click to enlarge */
+  $$('[data-shots]').forEach((fig) => {
+    const shots = $$('.shot', fig), tabs = $$('.shots-tab', fig);
+    let at = 0;
+    const go = (i) => {
+      at = (i + shots.length) % shots.length;
+      shots.forEach((s, k) => s.classList.toggle('on', k === at));
+      tabs.forEach((t, k) => { t.classList.toggle('on', k === at); t.setAttribute('aria-pressed', String(k === at)); });
+      const step = fig.closest('.gstep');
+      if (step) $$('.shot-link', step).forEach((c) => c.classList.toggle('on', Number(c.dataset.shot) === at + 1));
+    };
+    fig.goShot = go;
+    tabs.forEach((t) => t.addEventListener('click', () => go(Number(t.dataset.go) - 1)));
+    const prev = $('.shots-prev', fig), next = $('.shots-next', fig);
+    if (prev) prev.addEventListener('click', () => go(at - 1));
+    if (next) next.addEventListener('click', () => go(at + 1));
+    go(0);
+  });
+  document.addEventListener('click', (e) => {
+    const chip = e.target.closest && e.target.closest('.shot-link');
+    if (!chip) return;
+    const fig = chip.closest('.gstep') && $('[data-shots]', chip.closest('.gstep'));
+    if (!fig || !fig.goShot) return;
+    fig.goShot(Number(chip.dataset.shot) - 1);
+    const r = fig.getBoundingClientRect();
+    if (r.top < 80 || r.bottom > innerHeight) fig.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'center' });
+  });
+  let box = null;
+  document.addEventListener('click', (e) => {
+    const z = e.target.closest && e.target.closest('[data-zoom]');
+    if (!z) return;
+    const img = $('img', z);
+    if (!img || typeof HTMLDialogElement !== 'function') return;
+    if (!box) {
+      box = document.createElement('dialog'); box.className = 'lightbox';
+      box.innerHTML = '<img alt=""><button type="button" aria-label="Close">×</button>';
+      box.addEventListener('click', () => box.close());
+      document.body.appendChild(box);
+    }
+    $('img', box).src = img.currentSrc || img.src;
+    box.showModal();
+  });
+  // Screenshots of our own pages follow the visitor's language.
+  const langImgs = $$('[data-lang-src]');
+  if (langImgs.length) onLang.push((l) => langImgs.forEach((im) => { im.src = im.dataset.langSrc.replace('{lang}', l); }));
 
   /* ---------------------------------------------------------------- copy buttons (Get started page) */
   document.addEventListener('click', (e) => {
