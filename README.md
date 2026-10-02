@@ -87,7 +87,7 @@ Agents without MCP use the same tools over REST: `POST /api/v1/tools/<tool>` (Op
 
 ## Free plan notes
 
-- Everything runs on Cloudflare's free plan except the **server-generated PDF** (≈25–35 ms CPU vs. the free plan's 10 ms). Invoices are therefore shown as a print-ready QR-bill page (≈5 ms CPU) that the browser saves as PDF; the one-click PDF download needs Workers Paid (USD 5/month).
+- Everything runs on Cloudflare's free plan except the **server-generated PDF** (≈25–35 ms CPU vs. the free plan's 10 ms). Invoices are therefore shown as a print-ready QR-bill page (≈5 ms CPU) that the browser saves as PDF; the one-click PDF download needs Cloudflare's Workers Paid plan (USD 5/month, billed by Cloudflare, not by us).
 - Email is optional (Resend). Without it, the owner is signed in straight after sign-up, sessions extend while used, and partner sign-in links are created on the Approvals page to forward.
 
 ## Licence

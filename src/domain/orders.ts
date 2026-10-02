@@ -29,6 +29,8 @@ export interface OrderLine { line_no: number; product_id: number; source_id: str
 export async function placeOrder(env: Env, actor: Actor & { type: 'partner' }, ctx: { shop: Shop; settings: Settings; partner: Partner; lang: Lang }, input: { po_number?: string; ship_mode?: string; note?: string }, baseUrl: string): Promise<OrderRow> {
   const { partner, settings, shop } = ctx;
   if (partner.status !== 'approved') throw new AppError('NOT_APPROVED', 'Your trade account is not active.', 403);
+  // Every invoice carries a Swiss QR-bill with the shop's IBAN, so there are no orders before it is set.
+  if (!shop.iban) throw new AppError('SHOP_NOT_READY', 'This shop is not taking orders yet.', 409);
   const items = await cartItems(env.DB, partner.id);
   if (!items.length) throw new AppError('EMPTY_CART', 'The cart is empty.');
   const priced = await priceItems(env.DB, ctx, items);

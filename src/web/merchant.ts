@@ -6,8 +6,8 @@ import type { AgentScope } from '../lib/env';
 import { AppError, htmlResponse, PRIVATE_HEADERS, readForm, redirect, withHeaders } from '../lib/http';
 import { html, type Html } from '../lib/html';
 import { bpToPercent, formatDate, formatMoney } from '../money/format';
-import { assertCsrf, assertSameOrigin, createMagicLink, createSession, INVITE_LINK_TTL } from '../domain/auth';
-import { emailConfigured, now, one, run } from '../domain/db';
+import { assertCsrf, assertSameOrigin, createMagicLink, createSession, INVITE_LINK_TTL, rateLimit } from '../domain/auth';
+import { audit, emailConfigured, now, one, run } from '../domain/db';
 import { isDev } from '../lib/env';
 import { decideHeldOrder, listOrders } from '../domain/orders';
 import { decidePartner, getPartner, listPartners } from '../domain/partners';
@@ -47,7 +47,7 @@ function signupForm(ctx: Ctx, values: Record<string, string> = {}, error?: strin
         <label for="email">${t('m.field.email')}</label><input id="email" name="email" type="email" required autocomplete="email" value="${v('email')}"><p class="hint">${t('m.hint.email')}</p>
         <label for="uid">${t('field.uid')}</label><input id="uid" name="uid" type="text" placeholder="CHE-123.456.789" value="${v('uid')}"><p class="hint">${t('m.hint.uid')}</p>
         <label class="check"><input type="checkbox" name="vat_registered" value="1" ${values.vat_registered ? html`checked` : ''}> ${t('m.field.vatRegistered')}</label>
-        <label for="iban">${t('m.field.iban')}</label><input id="iban" name="iban" type="text" required placeholder="CH93 0076 2011 6238 5295 7" value="${v('iban')}"><p class="hint">${t('m.hint.iban')}</p>
+        <label for="iban">${t('m.field.iban')}</label><input id="iban" name="iban" type="text" placeholder="CH93 0076 2011 6238 5295 7" value="${v('iban')}"><p class="hint">${t('m.hint.iban')}</p>
         <label for="default_lang">${t('field.language')}</label><select id="default_lang" name="default_lang">${LANGS.map((l) => html`<option value="${l}" ${l === (values.default_lang ?? ctx.lang) ? html`selected` : ''}>${tr(l, 'lang.name')}</option>`)}</select>
         <p class="muted">${t('m.signup.after')}</p>
         <div class="actions"><button type="submit">${t('m.signup.submit')}</button></div>
@@ -67,7 +67,7 @@ export async function signupPost(ctx: Ctx): Promise<Response> {
   let v: ShopIdentityInput;
   try {
     v = validateShopIdentity({ ...(f as unknown as ShopIdentityInput), vat_registered: f.vat_registered === '1' });
-  } catch (e) { if (e instanceof AppError) return htmlResponse(signupForm(ctx, f, e.message), { status: 400 }); throw e; }
+  } catch (e) { if (e instanceof AppError) return htmlResponse(signupForm(ctx, f, identityError(ctx, e)), { status: 400 }); throw e; }
   // Self-hosted installs can pin the owner: only OWNER_EMAIL may create the shop.
   if (ctx.env.OWNER_EMAIL && ctx.env.OWNER_EMAIL.trim().toLowerCase() !== v.email.trim().toLowerCase())
     return htmlResponse(signupForm(ctx, f, ctx.t('m.signup.ownerOnly')), { status: 403 });
@@ -89,7 +89,13 @@ export async function signupPost(ctx: Ctx): Promise<Response> {
 
 // ---- Home: three-step setup (company details → connect your agent → "set up my trade portal") ----
 
-const AGENT_STEPS = ['connect_shop', 'import_catalog', 'confirm_prices', 'review_flagged', 'translations', 'confirm_defaults', 'first_partner'] as const;
+const AGENT_STEPS = ['connect_shop', 'import_catalog', 'confirm_prices', 'review_flagged', 'translations', 'confirm_defaults', 'bank_account', 'first_partner'] as const;
+
+/** Identity form errors in the owner's language (the domain layer speaks English). */
+const identityError = (ctx: Ctx, e: AppError): string => {
+  const key = ({ INVALID_IBAN: 'err.iban', IBAN_REQUIRED: 'err.ibanKeep', INVALID_UID: 'err.uid', INVALID_POSTCODE: 'err.postcode', INVALID_EMAIL: 'err.email', REQUIRED: 'err.required' } as const)[e.code as 'REQUIRED'];
+  return key ? ctx.t(key) : e.message;
+};
 
 const isLocalHttp = (url: URL) => url.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname);
 
@@ -120,7 +126,7 @@ export async function progress(ctx: Ctx): Promise<Response> {
   return withHeaders(new Response((await checklist(ctx)).list.value, { headers: { 'Content-Type': 'text/html; charset=utf-8', ...PRIVATE_HEADERS } }));
 }
 
-export async function home(ctx: Ctx, extra?: { token?: string; error?: string; saved?: boolean }): Promise<Response> {
+export async function home(ctx: Ctx, extra?: { token?: string; error?: string; saved?: boolean; signinLink?: string }): Promise<Response> {
   const actor = requireOwnerOrStaff(ctx);
   if (actor instanceof Response) return actor;
   const { t } = ctx;
@@ -148,10 +154,13 @@ export async function home(ctx: Ctx, extra?: { token?: string; error?: string; s
     ${extra?.token ? html`<section class="card"><h2>${t('m.tokens.created')}</h2><div class="token" id="new-token">${extra.token}</div>
       <div class="actions">${copyBtn('new-token')}</div>
       <h3>Claude Code</h3><pre id="snip-key-cli">${keyCli}</pre>${copyBtn('snip-key-cli')}
-      <h3>MCP config (JSON)</h3><pre id="snip-json">${jsonSnippet}</pre>${copyBtn('snip-json')}</section>` : ''}
+      <h3>MCP config (JSON)</h3><pre id="snip-json">${jsonSnippet}</pre>${copyBtn('snip-json')}
+      <h3>Claude</h3><p>${t('m.tokens.claudeApp')}</p></section>` : ''}
+    ${extra?.signinLink ? html`<section class="card" id="signin-link"><h2>${t('m.signin.linkTitle')}</h2><p>${t('m.signin.linkBody')}</p><div class="token" id="signin-url">${extra.signinLink}</div>
+      <div class="actions">${copyBtn('signin-url')}</div></section>` : ''}
     <ol class="steps">
       <li class="step done"><div class="step-n" aria-hidden="true">✓</div><div class="step-body">
-        <p class="step-label">${t('m.step', { n: 1 })}</p><h2>${t('m.step1.title')}</h2><p>${t('m.step1.body')} <a href="#business">${t('m.step1.edit')}</a></p></div></li>
+        <p class="step-label">${t('m.step', { n: 1 })}</p><h2>${t('m.step1.title')}</h2>${ctx.shop?.iban ? html`<p>${t('m.step1.body')} <a href="#business">${t('m.step1.edit')}</a></p>` : html`<p class="iban-missing">${t('m.iban.missing')} <a href="#business">${t('m.iban.add')} →</a></p>`}</div></li>
 
       <li class="step ${active.length ? 'done' : 'current'}"><div class="step-n" aria-hidden="true">${active.length ? '✓' : '2'}</div><div class="step-body">
         <p class="step-label">${t('m.step', { n: 2 })}</p><h2>${t('m.step2.title')}</h2><p>${t('m.step2.what')}</p>
@@ -160,10 +169,12 @@ export async function home(ctx: Ctx, extra?: { token?: string; error?: string; s
             <ol><li>${t('m.step2.claude.1')}</li>
               <li>${t('m.step2.claude.2')}<div class="copyrow"><code id="mcp-url">${mcpUrl}</code>${copyBtn('mcp-url')}</div></li>
               <li>${t('m.step2.claude.3')}</li></ol>
+            <p class="muted">${t('m.step2.claude.tip', { button: t('m.signin.otherBtn') })}</p>
             ${isLocalHttp(ctx.url) ? html`<p class="muted">${t('m.step2.claude.local')}</p>` : ''}</section>
           <section class="option"><h3>${t('m.step2.code.title')}</h3><p>${t('m.step2.code.1')}</p>
             <pre id="snip-cli">${connectCli}</pre>${copyBtn('snip-cli')}<p class="muted">${t('m.step2.code.2')}</p></section>
         </div>
+        <div class="other-browser"><p>${t('m.signin.other')}</p><form method="post" action="/merchant/signin-link">${csrfField(ctx)}<button class="secondary small" type="submit">${t('m.signin.otherBtn')}</button></form></div>
         ${isOwner ? html`<details class="more"><summary>${t('m.step2.other.title')}</summary><p>${t('m.step2.other.body')}</p>
           <form method="post" action="/merchant/tokens">${csrfField(ctx)}
           <div class="row"><div><label for="tname">${t('m.tokens.name')}</label><input id="tname" name="name" type="text" required maxlength="60" placeholder="Claude"></div>
@@ -226,7 +237,7 @@ export async function home(ctx: Ctx, extra?: { token?: string; error?: string; s
         <label for="email">${t('m.field.email')}</label><input id="email" name="email" type="email" required value="${shop.email}">
         <label for="uid">${t('field.uid')}</label><input id="uid" name="uid" type="text" value="${shop.uid ?? ''}">
         <label class="check"><input type="checkbox" name="vat_registered" value="1" ${shop.vat_registered ? html`checked` : ''}> ${t('m.field.vatRegistered')}</label>
-        <label for="iban">${t('m.field.iban')}</label><input id="iban" name="iban" type="text" required value="${shop.iban ? formatIban(shop.iban) : ''}">
+        <label for="iban">${t('m.field.iban')}</label><input id="iban" name="iban" type="text" ${shop.iban ? html`required` : ''} placeholder="CH93 0076 2011 6238 5295 7" value="${shop.iban ? formatIban(shop.iban) : ''}"><p class="hint">${t('m.hint.iban')}</p>
         <div class="actions"><button type="submit">${t('m.business.save')}</button></div></form>`
       : html`<dl class="kv"><dt>IBAN</dt><dd>${maskIban(shop.iban)}</dd></dl>`}
     </details>
@@ -262,7 +273,7 @@ export async function businessSave(ctx: Ctx): Promise<Response> {
   const f = await readForm(ctx.req);
   assertCsrf(ctx.req, ctx.viewer!.session, f);
   try { await updateShopIdentity(ctx.env.DB, actor, { ...(f as unknown as ShopIdentityInput), vat_registered: f.vat_registered === '1' }); }
-  catch (e) { if (e instanceof AppError) return home(ctx, { error: e.message }); throw e; }
+  catch (e) { if (e instanceof AppError) return home(ctx, { error: identityError(ctx, e) }); throw e; }
   return redirect('/merchant/setup?saved=1');
 }
 
@@ -354,6 +365,20 @@ export async function partnerLink(ctx: Ctx, id: string): Promise<Response> {
   const link = `${ctx.baseUrl}/auth/verify?t=${await createMagicLink(ctx.env, p.email, INVITE_LINK_TTL)}`;
   await run(ctx.env.DB, "INSERT INTO audit_log (at, actor_type, actor_label, action, target, detail) VALUES (?, 'user', ?, 'partner.signin_link', ?, '{}')", now(), `user:${actor.label}`, `partner:${p.id}`);
   return approvals(ctx, { company: p.company, link });
+}
+
+/**
+ * A one-time sign-in link for the signed-in owner or staff member, to open in another browser – for
+ * example the one Claude sends you to when connecting. Works without email; 15 minutes, single use.
+ */
+export async function signinLink(ctx: Ctx): Promise<Response> {
+  const actor = requireOwnerOrStaff(ctx);
+  if (actor instanceof Response) return actor;
+  assertCsrf(ctx.req, ctx.viewer!.session, await readForm(ctx.req));
+  if (!(await rateLimit(ctx.env.DB, `signin-link:${actor.id}`, 10, 3_600_000))) return home(ctx, { error: ctx.t('err.rateLimited') });
+  const link = `${ctx.baseUrl}/auth/verify?t=${await createMagicLink(ctx.env, actor.label)}`;
+  await audit(ctx.env.DB, actor, 'user.signin_link', `user:${actor.id}`, {});
+  return home(ctx, { signinLink: link });
 }
 
 /** HUMAN-ONLY: confirm or decline prices the agent found (one product, or all waiting). */

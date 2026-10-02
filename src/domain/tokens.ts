@@ -37,9 +37,9 @@ export const listAgentTokens = (db: D1Database) =>
 
 /** Resolve "Authorization: Bearer mt_…" to an agent actor. Revocation takes effect on the next request. */
 export async function authenticateAgent(env: Env, req: Request): Promise<Actor & { type: 'agent' }> {
-  const header = req.headers.get('Authorization') ?? '';
-  const m = /^Bearer\s+(mt_[A-Za-z0-9_-]{20,100})$/.exec(header);
-  if (!m) throw new AppError('UNAUTHENTICATED', 'Send "Authorization: Bearer <agent token>". Create one on the merchant page.', 401);
+  // "Authorization: Bearer mt_…", or "X-API-Key: mt_…" for clients that keep Authorization for their own sign-in.
+  const m = /^Bearer\s+(mt_[A-Za-z0-9_-]{20,100})$/.exec(req.headers.get('Authorization') ?? '') ?? /^(mt_[A-Za-z0-9_-]{20,100})$/.exec((req.headers.get('X-API-Key') ?? '').trim());
+  if (!m) throw new AppError('UNAUTHENTICATED', 'Send "Authorization: Bearer <agent token>" or "X-API-Key: <agent token>". Create one on the merchant page.', 401);
   const row = await one<TokenRow>(env.DB, 'SELECT id, name, scope, created_at, last_used_at, revoked_at FROM agent_tokens WHERE token_hash = ?', await sha256Hex(m[1] as string));
   if (!row || row.revoked_at) throw new AppError('UNAUTHENTICATED', 'This agent token is unknown or has been revoked.', 401);
   await run(env.DB, 'UPDATE agent_tokens SET last_used_at = ? WHERE id = ?', now(), row.id);

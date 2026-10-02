@@ -181,24 +181,31 @@ export interface ShopIdentityInput {
   uid: string; vat_registered: boolean; iban: string; default_lang?: Lang;
 }
 
-/** Validate identity + bank details. Only ever called from human-authenticated pages. */
-export function validateShopIdentity(i: ShopIdentityInput): ShopIdentityInput {
-  const req = ['legal_name', 'street', 'postcode', 'city', 'email', 'iban'] as const;
+/**
+ * Validate identity + bank details. Only ever called from human-authenticated pages. The IBAN may follow
+ * later (easier sign-up): until it is set the portal takes no orders, so no invoice goes out without a
+ * QR-bill. Once set it can be changed but not removed (requireIban).
+ */
+export function validateShopIdentity(i: ShopIdentityInput, opts: { requireIban?: boolean } = {}): ShopIdentityInput {
+  const req = ['legal_name', 'street', 'postcode', 'city', 'email'] as const;
   for (const k of req) if (!i[k]?.trim()) throw new AppError('REQUIRED', `${k} is required`);
   if (!isSwissPostcode(i.postcode)) throw new AppError('INVALID_POSTCODE', 'Postcode must be a 4-digit Swiss postcode');
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(i.email)) throw new AppError('INVALID_EMAIL', 'Invalid email');
-  if (!isValidIban(i.iban)) throw new AppError('INVALID_IBAN', 'Invalid CH/LI IBAN');
+  const iban = (i.iban ?? '').trim();
+  if (!iban && opts.requireIban) throw new AppError('IBAN_REQUIRED', 'The IBAN can be changed but not removed: it is printed on your invoices.');
+  if (iban && !isValidIban(iban)) throw new AppError('INVALID_IBAN', 'Invalid CH/LI IBAN');
   if (i.vat_registered && !isValidUid(i.uid)) throw new AppError('INVALID_UID', 'A valid UID (CHE-…) is required when VAT-registered');
   if (i.uid && !isValidUid(i.uid)) throw new AppError('INVALID_UID', 'Invalid UID (check digit)');
-  return { ...i, uid: i.uid ? (normaliseUid(i.uid) as string) : '', iban: compactIban(i.iban) };
+  return { ...i, uid: i.uid ? (normaliseUid(i.uid) as string) : '', iban: iban ? compactIban(iban) : '' };
 }
 
 export async function updateShopIdentity(db: D1Database, actor: Actor, input: ShopIdentityInput): Promise<void> {
   if (actor.type !== 'user' || actor.role !== 'owner') throw new AppError('HUMAN_ONLY', 'Only the shop owner can change company and bank details.', 403);
-  const v = validateShopIdentity(input);
+  const current = await one<{ iban: string | null }>(db, 'SELECT iban FROM shop WHERE id = 1');
+  const v = validateShopIdentity(input, { requireIban: !!current?.iban });
   await run(db, `UPDATE shop SET legal_name=?, street=?, house_no=?, postcode=?, city=?, email=?, uid=?, vat_registered=?, iban=? WHERE id = 1`,
-    v.legal_name, v.street, v.house_no, v.postcode, v.city, v.email, v.uid || null, v.vat_registered ? 1 : 0, v.iban);
-  await audit(db, actor, 'shop.update_identity', 'shop', { iban_last4: v.iban.slice(-4), vat_registered: v.vat_registered });
+    v.legal_name, v.street, v.house_no, v.postcode, v.city, v.email, v.uid || null, v.vat_registered ? 1 : 0, v.iban || null);
+  await audit(db, actor, 'shop.update_identity', 'shop', { iban_last4: v.iban ? v.iban.slice(-4) : null, vat_registered: v.vat_registered });
 }
 
 export const maskIban = (iban: string | null): string | null => (iban ? `${iban.slice(0, 4)} •••• •••• ${iban.slice(-4)}` : null);

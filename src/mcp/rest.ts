@@ -71,7 +71,7 @@ export async function llmsTxt(env: Env, baseUrl: string): Promise<Response> {
     '> A Swiss B2B trade portal designed to be run by an AI agent. Trade customers order at net tier prices and pay by QR-bill invoice. The merchant\'s agent configures and operates everything; the merchant confirms trust and money decisions.',
     '',
     '## Connect',
-    `- MCP (Streamable HTTP): ${baseUrl}/mcp — header "Authorization: Bearer <agent token>"`,
+    `- MCP (Streamable HTTP): ${baseUrl}/mcp — header "Authorization: Bearer <agent token>" (or "X-API-Key: <agent token>")`,
     `- REST: POST ${baseUrl}/api/v1/tools/<tool> with a JSON body — same token; OpenAPI at ${baseUrl}/api/v1/openapi.json`,
     '- Tokens are created by the shop owner on the merchant page, with access: read, operate or configure.',
     '',
